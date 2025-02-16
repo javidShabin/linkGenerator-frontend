@@ -35,20 +35,30 @@ export default function LoginForm() {
     setLoading(true);
     try {
       const response = await axiosInstance.post("/auth/login-user", data);
+      const role = response.data.user.role; // 👈 get role
+      console.log(role);
+      console.log(response)
+  
       toast.success("Login success");
-      dispatch(saveUser(response.data.data));
-      navigate("/");
+      dispatch(saveUser(response.data.user));
+  
+      // 👇 navigation logic updated
+      if (role === "user" || role === "pro") {
+        navigate("/user/dashbord");
+      } else if(role === "admin") {
+        navigate("/user/admin");
+      }
     } catch (error) {
       if (error.response.data.redirect) {
         setBlockLinkg(error.response.data.redirect);
       }
-
       dispatch(clearUser());
       toast.error("Login failed");
     } finally {
       setLoading(false);
     }
   };
+  
 
   const handleGoogleLogin = () => {
     window.location.href =
