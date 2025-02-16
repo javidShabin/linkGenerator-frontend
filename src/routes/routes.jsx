@@ -19,6 +19,7 @@ import MyLinks from "../pages/auth/MyLinks";
 import ProfileEdite from "../pages/auth/ProfileEdite";
 import ForgotPassword from "../components/ForgotPassword";
 import BrandPage from "../pages/BrandPage";
+import AdminDashboard from "../layouts/AdminDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -103,6 +104,11 @@ export const router = createBrowserRouter([
               },
             ],
           },
+
+          {
+            path: "admin",
+            element: <AdminDashboard />
+          }
         ],
       },
 
