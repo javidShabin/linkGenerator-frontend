@@ -18,14 +18,15 @@ const Header = () => {
   const [loading, setLoading] = useState(true);
 
   const isDashboardRoute = location.pathname.startsWith("/user/dashbord");
+  const isAdminDashboardRoute = location.pathname.startsWith("/user/admin");
 
   useEffect(() => {
-    if (isDashboardRoute) {
+    if (isDashboardRoute || isAdminDashboardRoute ) {
       setHiderHeader("hidden");
     } else {
       setHiderHeader("sticky");
     }
-  }, [isDashboardRoute]);
+  }, [isDashboardRoute, isAdminDashboardRoute]);
 
   const checkUser = async () => {
     try {
