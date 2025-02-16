@@ -21,6 +21,7 @@ import ForgotPassword from "../components/ForgotPassword";
 import BrandPage from "../pages/BrandPage";
 import AdminDashboard from "../layouts/AdminDashboard";
 import AdminProfilePage from "../pages/auth/admin/AdminProfile";
+import AllUsers from "../pages/auth/admin/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -114,6 +115,10 @@ export const router = createBrowserRouter([
               {
                 path: "profile",
                 element: <AdminProfilePage />
+              },
+              {
+                path: "all-users",
+                element: <AllUsers />
               }
             ]
           }

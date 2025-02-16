@@ -45,7 +45,7 @@ export default function AdminSideBar({ onNavigate }) {
       id: "All-users",
       label: "All-users",
       icon: Users,
-      path: "/admin/all-users",
+      path: "/user/admin/all-users",
     },
     {
       id: "Pro-users",
