@@ -63,7 +63,7 @@ export default function AdminSideBar({ onNavigate }) {
       id: "Plans",
       label: "Plans",
       icon: ClipboardList,
-      path: "/admin/payment-plans",
+      path: "/user/admin/payment-plans",
     },
     {
       id: "Settings",

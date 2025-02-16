@@ -22,6 +22,7 @@ import BrandPage from "../pages/BrandPage";
 import AdminDashboard from "../layouts/AdminDashboard";
 import AdminProfilePage from "../pages/auth/admin/AdminProfile";
 import AllUsers from "../pages/auth/admin/AllUsers";
+import Plans from "../pages/auth/admin/Plans";
 
 export const router = createBrowserRouter([
   {
@@ -119,6 +120,10 @@ export const router = createBrowserRouter([
               {
                 path: "all-users",
                 element: <AllUsers />
+              },
+              {
+                path: "payment-plans",
+                element: <Plans />
               }
             ]
           }
