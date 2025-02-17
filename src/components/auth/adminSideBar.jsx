@@ -51,7 +51,7 @@ export default function AdminSideBar({ onNavigate }) {
       id: "Pro-users",
       label: "Pro-users",
       icon: Crown,
-      path: "/admin/pro-users",
+      path: "/user/admin/pro-users",
     },
     {
       id: "Payments",

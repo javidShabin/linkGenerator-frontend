@@ -24,6 +24,7 @@ import AdminProfilePage from "../pages/auth/admin/AdminProfile";
 import AllUsers from "../pages/auth/admin/AllUsers";
 import Plans from "../pages/auth/admin/Plans";
 import AddPackagePage from "../components/auth/AddPackage";
+import ProUsers from "../pages/auth/admin/ProUsers";
 
 export const router = createBrowserRouter([
   {
@@ -129,6 +130,10 @@ export const router = createBrowserRouter([
               {
                 path: "add-plans",
                 element: <AddPackagePage />
+              },
+              {
+                path: "pro-users",
+                element: <ProUsers />
               }
             ]
           }
