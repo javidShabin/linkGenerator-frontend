@@ -69,7 +69,7 @@ const Plans = () => {
 
       {/* New Plan Button */}
       <div className="relative z-10 flex justify-center mb-12">
-        <Link to={"/admin/add-plans"}>
+        <Link to={"/user/admin/add-plans"}>
           <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/20 text-green-400 hover:bg-green-500/30 transition">
             <Plus className="w-5 h-5" /> New Plan
           </button>
