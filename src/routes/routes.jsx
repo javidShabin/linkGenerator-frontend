@@ -26,6 +26,7 @@ import Plans from "../pages/auth/admin/Plans";
 import AddPackagePage from "../components/auth/AddPackage";
 import ProUsers from "../pages/auth/admin/ProUsers";
 import PaymentDetails from "../pages/auth/admin/PaymentDetails";
+import AdminProfileEdit from "../pages/auth/admin/ProfileEdit";
 
 export const router = createBrowserRouter([
   {
@@ -139,6 +140,10 @@ export const router = createBrowserRouter([
               {
                 path: "payment-details",
                 element: <PaymentDetails />,
+              },
+              {
+                path: "edit-profile",
+                element: <AdminProfileEdit />,
               },
             ]
           }
