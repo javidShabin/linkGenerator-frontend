@@ -25,6 +25,7 @@ import AllUsers from "../pages/auth/admin/AllUsers";
 import Plans from "../pages/auth/admin/Plans";
 import AddPackagePage from "../components/auth/AddPackage";
 import ProUsers from "../pages/auth/admin/ProUsers";
+import PaymentDetails from "../pages/auth/admin/PaymentDetails";
 
 export const router = createBrowserRouter([
   {
@@ -134,7 +135,11 @@ export const router = createBrowserRouter([
               {
                 path: "pro-users",
                 element: <ProUsers />
-              }
+              },
+              {
+                path: "payment-details",
+                element: <PaymentDetails />,
+              },
             ]
           }
         ],

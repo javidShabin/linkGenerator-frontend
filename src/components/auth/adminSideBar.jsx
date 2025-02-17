@@ -57,7 +57,7 @@ export default function AdminSideBar({ onNavigate }) {
       id: "Payments",
       label: "Payments",
       icon: CreditCard,
-      path: "/admin/payment-details",
+      path: "/user/admin/payment-details",
     },
     {
       id: "Plans",
