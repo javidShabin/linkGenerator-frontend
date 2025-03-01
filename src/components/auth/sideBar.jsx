@@ -47,7 +47,11 @@ export default function Sidebar({ onNavigate }) {
 
   function handleNav(item) {
     setActive(item.id);
-    if (onNavigate) onNavigate(item.id);
+
+    // ✅ prevent sidebar close when clicking Settings
+    if (item.id !== "Settings" && onNavigate) {
+      onNavigate(item.id);
+    }
   }
 
   const handleLogout = async () => {
