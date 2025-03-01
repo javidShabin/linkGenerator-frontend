@@ -150,7 +150,7 @@ export default function AdminSideBar({ onNavigate }) {
                 {it.dropdown && settingsOpen && (
                   <div className="ml-12 mt-1 flex flex-col gap-1">
                     <Link
-                      to={"/admin/edit-profile"}
+                      to={"/user/admin/edit-profile"}
                       className="flex items-center gap-2 text-sm text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10"
                     >
                       <UserCog size={14} /> Profile edit
