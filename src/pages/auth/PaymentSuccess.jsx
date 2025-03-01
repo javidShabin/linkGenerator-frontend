@@ -66,7 +66,7 @@ export default function PaymentSuccess() {
         )}
 
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/user/dashbord")}
           className="mt-6 px-6 py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white font-semibold transition-all duration-300 shadow-lg"
         >
           Go to Home
