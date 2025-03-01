@@ -34,7 +34,7 @@ export default function AdminSideBar({ onNavigate }) {
   getUserDetails();
 
   const items = [
-    { id: "Dashboard", label: "Dashboard", icon: Home, path: "/" },
+    { id: "Dashboard", label: "Dashboard", icon: Home },
     {
       id: "Profile",
       label: "Profile",
@@ -100,7 +100,7 @@ export default function AdminSideBar({ onNavigate }) {
             <span className="font-extrabold tracking-tight">TS</span>
           </div>
           <div>
-            <Link to={"/"}>
+            <Link to={"/user/admin"}>
               <h1 className="text-lg font-bold leading-none">Admin Panel</h1>
             </Link>
           </div>

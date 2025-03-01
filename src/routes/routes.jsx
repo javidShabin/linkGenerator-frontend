@@ -27,6 +27,7 @@ import AddPackagePage from "../components/auth/AddPackage";
 import ProUsers from "../pages/auth/admin/ProUsers";
 import PaymentDetails from "../pages/auth/admin/PaymentDetails";
 import AdminProfileEdit from "../pages/auth/admin/ProfileEdit";
+import AdminsDashboard from "../pages/auth/admin/AdminDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -117,6 +118,10 @@ export const router = createBrowserRouter([
             element: <AdminDashboard />,
 
             children: [
+              {
+                index: true,
+                element: <AdminsDashboard />
+              },
               {
                 path: "profile",
                 element: <AdminProfilePage />
