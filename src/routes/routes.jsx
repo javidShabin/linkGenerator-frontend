@@ -111,6 +111,20 @@ export const router = createBrowserRouter([
                 path: "link-generate",
                 element: <LinkGenerating />,
               },
+
+
+
+              {
+                path: "pro-user",
+                element: <ProUser />,
+        
+                children: [
+                  {
+                    path: "qr-generator/:slug",
+                    element: <QRGenerator />,
+                  },
+                ],
+              },
             ],
           },
 
@@ -152,24 +166,14 @@ export const router = createBrowserRouter([
                 element: <AdminProfileEdit />,
               },
             ]
-          }
+          },
         ],
       },
 
       // ******************************************************************
       // ********************** Premium user routes ********************************
 
-      {
-        path: "pro-user",
-        element: <ProUser />,
-
-        children: [
-          {
-            path: "qr-generator/:slug",
-            element: <QRGenerator />,
-          },
-        ],
-      },
+      
     ],
   },
 ]);

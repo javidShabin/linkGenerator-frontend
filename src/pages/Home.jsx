@@ -14,35 +14,35 @@ const Home = () => {
       title: "📞 Link Generator",
       description:
         "Create WhatsApp links with pre-filled messages that feel personal and professional.",
-      link: "/create",
+     
     },
     {
       title: "📲 QR Code Generator",
       description:
         "Custom-designed QR codes with high-definition output and brand integration.",
-      link: "/dashboard",
+    
     },
     {
       title: "📁 History & Edit",
       description: "Track, manage, and update your links effortlessly anytime.",
-      link: "/analytics",
+      
     },
     {
       title: "🌐 Branded Pages",
       description:
         "Personalized landing pages to reflect your business style and tone.",
-      link: "/Brand",
+   
     },
     {
       title: "🛡 Secure Auth",
       description: "OAuth & JWT-based authentication to protect your assets.",
-      link: "/auth",
+   
     },
     {
       title: "📊 Admin Insights",
       description:
         "See real-time analytics and optimize engagement from your dashboard.",
-      link: "/admin",
+     
     },
   ];
 
@@ -101,7 +101,7 @@ const Home = () => {
               personalized links, manage engagement, and build trust.
             </p>
 
-            <Link to={"/user/link-generate"}>
+            <Link to={"/user/dashbord/link-generate"}>
               <button
                 className={`mt-8 px-8 py-3 rounded-full bg-purple-600 hover:bg-purple-700 transition duration-300 text-white text-lg font-semibold shadow-xl`}
               >

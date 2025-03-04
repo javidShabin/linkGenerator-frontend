@@ -156,7 +156,7 @@ const MyLinks = () => {
                   {link.clicks}
                 </p>
               </div>
-              <Link to={`/pro-user/qr-generator/${link.slug}`}>
+              <Link to={`/user/dashbord/pro-user/qr-generator/${link.slug}`}>
                   <button
                     className={`flex item-center justify-center gap-2 px-3 bg-green-400 py-1 rounded-2xl border border-gray-600 shadow-lg`}
                   >QR code</button>
