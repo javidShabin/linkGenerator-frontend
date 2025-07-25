@@ -5,6 +5,7 @@ import SignupForm from "../pages/Signup";
 import LoginForm from "../pages/Login";
 import LinkGenerator from "../pages/auth/Link";
 import AuthUser from "./protuct/AuthUser";
+import QrGenerator from "../pages/pro/QrGenerator";
 
 
 export const router = createBrowserRouter([
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
           {
             path: "link-generating",
             element: <LinkGenerator />
+          },
+          {
+            path: "qr-generator/:slug",
+            element: <QrGenerator />
           }
         ]
       }

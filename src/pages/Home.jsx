@@ -1,39 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import heroImage from "../../public/hero.svg";
+import heroImage from "../../public/whatsapp.png";
 import { useSelector } from "react-redux";
 
 const Home = () => {
   const { isUserExist } = useSelector((state) => state.user);
 
   return (
-    <main className="bg-gradient-to-br from-white via-[#f9f9ff] to-[#f3f3ff] text-gray-800">
+    <main className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white min-h-screen w-full">
       {/* Hero Section */}
-      <section className="w-full min-h-screen flex flex-col lg:flex-row items-center justify-between px-6 md:px-16 py-16">
-        <div className="flex-1 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-[#3f3d56]">
-            Generate Custom{" "}
-            <span className="text-[#dd63ff]">WhatsApp Links</span>
-            <br />& QR Codes Instantly
+      <section className="flex flex-col lg:flex-row items-center justify-between px-6 md:px-16 py-20">
+        {/* Left Content */}
+        <div className="flex-1 space-y-6 animate-fadeIn">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+            Create Stunning{" "}
+            <span className="text-purple-400">WhatsApp Links</span> & QR Codes
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-lg">
-            Tailored for freelancers, creators, and businesses to create branded
-            WhatsApp chat links with optional QR, history, and landing pages.
+          <p className="text-lg md:text-xl text-gray-300 max-w-lg">
+            A modern toolkit for freelancers, creators & brands to build WhatsApp links, QR codes, and branded landing pages.
           </p>
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-wrap">
             <Link to="/user/link-generating">
-              <button className="bg-[#dd63ff] hover:bg-[#c755e2] text-white px-6 py-3 text-lg rounded-2xl shadow-lg transition">
+              <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 text-lg rounded-xl shadow-lg transition-all">
                 🚀 Get Started
               </button>
             </Link>
-
-            {/* 🔐 Show Login button only if user is NOT authenticated */}
             {!isUserExist && (
               <Link to="/login-page">
-                <button
-                  variant="outline"
-                  className="px-6 py-3 text-lg rounded-2xl border-gray-400 text-[#3f3d56] hover:bg-gray-100"
-                >
+                <button className="px-6 py-3 text-lg rounded-xl border border-white text-white hover:bg-white hover:text-[#2c5364] transition-all">
                   🔐 Login
                 </button>
               </Link>
@@ -41,76 +35,80 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Hero Image */}
-        <div className="flex-1 mt-10 lg:mt-0">
+        {/* Right Image */}
+        <div className="flex-1 mt-12 lg:mt-0">
           <img
             src={heroImage}
-            alt="WhatsApp Tool"
-            className="w-full max-w-xl"
+            alt="Hero"
+            className="w-full max-w-xl drop-shadow-2xl"
           />
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-20 px-6 md:px-16 bg-white">
-        <h2 className="text-3xl font-bold text-center mb-14 text-[#3f3d56]">
+      {/* Features Section */}
+      <section className="py-20 px-6 md:px-16">
+        <h2 className="text-3xl font-bold text-center mb-14 text-purple-300">
           ✨ Core Features
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {[
             {
               title: "📞 Link Generator",
-              desc: "Create click-to-chat links with message & number. Share anywhere instantly.",
+              desc: "Create click-to-chat WhatsApp links with prefilled messages.",
             },
             {
               title: "📲 QR Code Generator",
-              desc: "Generate high-res QR codes with custom color/logo (Pro users).",
+              desc: "Generate custom QR codes with your own branding (Pro users).",
             },
             {
               title: "📁 History & Edit",
-              desc: "Logged-in users can view, edit, or delete previously created links.",
+              desc: "Edit or delete your previously created links with ease.",
             },
             {
               title: "🌐 Branded Pages",
-              desc: "Premium landing pages to match your identity. Drive conversions.",
+              desc: "Customize landing pages to match your style and brand.",
             },
             {
               title: "🛡 Secure Auth",
-              desc: "Email/Google login with JWT-based secure dashboard access.",
+              desc: "JWT-secured authentication via email & Google login.",
             },
             {
               title: "📊 Admin Insights",
-              desc: "Admin dashboard to manage users, usage stats, and feature control.",
+              desc: "Track usage stats and manage users with admin tools.",
             },
           ].map((feature, index) => (
             <div
               key={index}
-              className="rounded-2xl p-6 bg-[#f9f9ff] border border-gray-100 shadow hover:shadow-md transition"
+              className="rounded-2xl p-6 bg-white/10 border border-white/20 backdrop-blur-md text-white shadow-lg hover:scale-[1.02] transition"
             >
-              <h3 className="text-xl font-semibold text-[#3f3d56] mb-2">
+              <h3 className="text-xl font-semibold text-purple-300 mb-2">
                 {feature.title}
               </h3>
-              <p className="text-gray-600">{feature.desc}</p>
+              <p className="text-gray-200">{feature.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#dd63ff] py-20 px-6 md:px-16 text-white text-center rounded-t-3xl">
+      {/* Call To Action */}
+      <section className="bg-black py-20 px-6 md:px-16 text-white text-center rounded-t-3xl">
         <h2 className="text-3xl font-bold mb-4">
-          Upgrade to Pro for ₹199/year
+          Upgrade to Pro – ₹199/year
         </h2>
-        <p className="text-lg mb-8 max-w-2xl mx-auto">
-          Unlock QR customization, branded pages, and usage history. One-time
-          payment. No monthly fees.
+        <p className="text-lg mb-8 max-w-2xl mx-auto text-white/90">
+          Get access to premium features like QR customization, branded pages, and link history. One-time payment — no subscriptions.
         </p>
         <Link to="/pricing">
-          <button className="bg-white text-[#dd63ff] font-semibold px-8 py-3 text-lg rounded-xl shadow-lg hover:bg-gray-100 transition">
+          <button className="bg-white text-purple-700 font-semibold px-8 py-3 text-lg rounded-xl shadow-lg hover:bg-gray-100 transition">
             💎 View Pricing
           </button>
         </Link>
       </section>
+
+      {/* Footer */}
+      <footer className="py-6 text-center text-sm text-white/60">
+        &copy; {new Date().getFullYear()} YourBrand. All rights reserved.
+      </footer>
     </main>
   );
 };
