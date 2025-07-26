@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import heroImage from "../../public/whatsapp.png";
-import { useSelector } from "react-redux";
 
 const Home = () => {
-  const { isUserExist } = useSelector((state) => state.user);
 
   return (
     <main className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white min-h-screen w-full">
@@ -25,13 +23,6 @@ const Home = () => {
                 🚀 Get Started
               </button>
             </Link>
-            {!isUserExist && (
-              <Link to="/login-page">
-                <button className="px-6 py-3 text-lg rounded-xl border border-white text-white hover:bg-white hover:text-[#2c5364] transition-all">
-                  🔐 Login
-                </button>
-              </Link>
-            )}
           </div>
         </div>
 

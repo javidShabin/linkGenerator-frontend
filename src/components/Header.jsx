@@ -11,23 +11,25 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const checkUser = async () => {
     try {
       const response = await axiosInstance.get("/user/check-user");
       if (response?.data?.user) {
-        dispatch(saveUser(response.data.user)); // Save user from backend
+        dispatch(saveUser(response.data.user));
       }
     } catch (error) {
       dispatch(clearUser());
       console.error("Error checking user:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    if (!isUserExist) {
-      checkUser();
-    }
+    setLoading(true);
+    checkUser();
   }, [location.pathname]);
 
   const handleLogout = async () => {
@@ -54,7 +56,9 @@ const Header = () => {
         </Link>
 
         {/* Right Side */}
-        {isUserExist ? (
+        {loading ? (
+          <span className="text-white text-sm animate-pulse">Loading...</span>
+        ) : isUserExist ? (
           <div className="relative">
             <button
               onClick={() => setOpenMenu(!openMenu)}
