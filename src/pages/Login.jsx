@@ -6,10 +6,10 @@ import { axiosInstance } from "../config/axiosInstance";
 import { useDispatch } from "react-redux";
 import { clearUser, saveUser } from "../redux/feature/userSlice";
 
-
 export default function LoginForm() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -18,20 +18,13 @@ export default function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axiosInstance({
-        method: "POST",
-        url: "/user/login",
-        data,
-      });
-      console.log(response.data)
+      const response = await axiosInstance.post("/user/login", data);
       toast.success("Login success");
-      dispatch(saveUser(response.data.user))
+      dispatch(saveUser(response.data.user));
       navigate("/");
     } catch (error) {
-      dispatch(clearUser())
-      console.error(error);
+      dispatch(clearUser());
       toast.error("Login failed");
-     
     }
   };
 
@@ -40,16 +33,16 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] px-4">
+      <div className="w-full max-w-md bg-white/5 border border-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-2xl text-white">
+        <h2 className="text-2xl font-bold text-center mb-6 text-[#14b8a6]">
           Welcome Back
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium mb-1 text-[#e5e7eb]">
               Email
             </label>
             <input
@@ -61,11 +54,11 @@ export default function LoginForm() {
                 },
               })}
               type="email"
-              className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-2 bg-white/10 text-[#e5e7eb] placeholder-[#94a3b8] border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#14b8a6]"
               placeholder="Enter your email"
             />
             {errors.email && (
-              <p className="text-sm text-red-500 mt-1">
+              <p className="text-sm text-red-400 mt-1">
                 {errors.email.message}
               </p>
             )}
@@ -73,7 +66,7 @@ export default function LoginForm() {
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium mb-1 text-[#e5e7eb]">
               Password
             </label>
             <input
@@ -85,11 +78,11 @@ export default function LoginForm() {
                 },
               })}
               type="password"
-              className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-2 bg-white/10 text-[#e5e7eb] placeholder-[#94a3b8] border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#14b8a6]"
               placeholder="Enter your password"
             />
             {errors.password && (
-              <p className="text-sm text-red-500 mt-1">
+              <p className="text-sm text-red-400 mt-1">
                 {errors.password.message}
               </p>
             )}
@@ -98,28 +91,28 @@ export default function LoginForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition duration-200"
+            className="w-full bg-[#14b8a6] hover:bg-[#0d9488] text-white font-semibold py-2 rounded-lg transition duration-200 shadow-lg"
           >
             Log In
           </button>
         </form>
 
-        {/* Google Auth Button */}
+        {/* Google Auth */}
         <div className="mt-6 text-center">
-          <p className="text-sm text-gray-500 mb-2">Or log in with</p>
+          <p className="text-sm text-[#94a3b8] mb-2">Or log in with</p>
           <button
             onClick={handleGoogleLogin}
-            className="w-full border border-gray-300 py-2 rounded-lg flex items-center justify-center hover:bg-gray-100 transition duration-200"
+            className="w-full border border-white/10 py-2 rounded-lg flex items-center justify-center bg-white/10 hover:bg-white/20 transition duration-200"
           >
-            <img src={googleLogo} alt="Google" className="h-8 w-8 mr-2" />
-            Continue with Google
+            <img src={googleLogo} alt="Google" className="h-6 w-6 mr-2" />
+            <span className="text-[#e5e7eb] text-sm">Continue with Google</span>
           </button>
         </div>
 
-        {/* Signup link */}
-        <p className="mt-6 text-center text-sm text-gray-600">
+        {/* Signup Link */}
+        <p className="mt-6 text-center text-sm text-[#94a3b8]">
           Don’t have an account?{" "}
-          <Link to={"/signup-page"} className="text-purple-600 hover:underline">
+          <Link to="/signup-page" className="text-[#14b8a6] hover:underline">
             Sign up
           </Link>
         </p>

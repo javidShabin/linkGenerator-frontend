@@ -44,10 +44,10 @@ const LinkGenerator = () => {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-br from-white via-purple-50 to-indigo-100 px-4 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] px-4 py-16">
       <Toaster />
-      <div className="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-8">
+      <div className="max-w-2xl mx-auto bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 text-[#e5e7eb]">
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-[#14b8a6] mb-8">
           💬 WhatsApp Link Generator
         </h1>
 
@@ -55,7 +55,7 @@ const LinkGenerator = () => {
           <input
             type="tel"
             placeholder="Phone number with country code"
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition"
+            className="w-full px-4 py-3 bg-white/10 text-[#e5e7eb] placeholder-[#94a3b8] border border-white/10 rounded-xl focus:ring-2 focus:ring-[#14b8a6] outline-none"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -63,7 +63,7 @@ const LinkGenerator = () => {
           <textarea
             rows={3}
             placeholder="Optional message (e.g. Hello! I’m interested...)"
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition"
+            className="w-full px-4 py-3 bg-white/10 text-[#e5e7eb] placeholder-[#94a3b8] border border-white/10 rounded-xl focus:ring-2 focus:ring-[#14b8a6] outline-none"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
@@ -71,20 +71,20 @@ const LinkGenerator = () => {
           <button
             onClick={generateLink}
             disabled={loading}
-            className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition"
+            className="w-full bg-[#14b8a6] hover:bg-[#0d9488] text-white font-semibold py-3 rounded-xl transition duration-200 shadow-md"
           >
             {loading ? "Generating..." : "Generate WhatsApp Link"}
           </button>
         </div>
 
         {generatedLink && (
-          <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-4 space-y-4 text-center">
-            <p className="text-gray-700 font-medium text-sm">Generated Link:</p>
+          <div className="mt-8 bg-white/5 border border-white/10 rounded-xl p-5 text-center space-y-4">
+            <p className="text-sm font-medium text-[#e5e7eb]">Generated Link:</p>
             <a
               href={shortLink || generatedLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-indigo-600 break-all font-semibold underline"
+              className="text-[#14b8a6] break-all font-semibold underline"
             >
               {shortLink || generatedLink}
             </a>
@@ -92,7 +92,7 @@ const LinkGenerator = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
               <button
                 onClick={() => copyToClipboard(shortLink || generatedLink)}
-                className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-xl text-sm"
+                className="bg-white/10 hover:bg-white/20 text-[#e5e7eb] px-4 py-2 rounded-xl text-sm transition"
               >
                 📋 Copy
               </button>
@@ -100,7 +100,7 @@ const LinkGenerator = () => {
                 href={shortLink || generatedLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm transition"
               >
                 👁 Preview
               </a>

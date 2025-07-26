@@ -7,16 +7,17 @@ import { useDispatch } from "react-redux";
 import { clearUser, saveUser } from "../redux/feature/userSlice";
 
 export default function SignupForm() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
+  const password = watch("password");
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       const response = await axiosInstance.post("/user/signup", {
         ...data,
@@ -24,10 +25,9 @@ export default function SignupForm() {
       });
 
       toast.success(response.data.message);
-dispatch(saveUser(response.data.user))
+      dispatch(saveUser(response.data.user));
       navigate("/");
     } catch (error) {
-      console.log(error);
       toast.error("Signup failed");
       dispatch(clearUser());
     }
@@ -38,28 +38,25 @@ dispatch(saveUser(response.data.user))
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-2 sm:px-4">
-      <div className="w-full max-w-sm sm:max-w-md bg-white p-5 sm:p-6 rounded-xl shadow-md">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-5 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] px-4">
+      <div className="w-full max-w-md bg-white/5 border border-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-2xl text-white">
+        <h2 className="text-2xl font-bold text-center mb-6 text-[#14b8a6]">
           Create an Account
         </h2>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="space-y-4 sm:space-y-5"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Username */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium mb-1 text-[#e5e7eb]">
               Username
             </label>
             <input
               {...register("userName", { required: "Username is required" })}
-              className="mt-1 w-full px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 bg-white/10 text-[#e5e7eb] placeholder-[#94a3b8] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#14b8a6]"
               placeholder="Enter your name"
             />
             {errors.userName && (
-              <p className="text-xs text-red-500 mt-1">
+              <p className="text-xs text-red-400 mt-1">
                 {errors.userName.message}
               </p>
             )}
@@ -67,7 +64,7 @@ dispatch(saveUser(response.data.user))
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium mb-1 text-[#e5e7eb]">
               Email
             </label>
             <input
@@ -79,11 +76,11 @@ dispatch(saveUser(response.data.user))
                 },
               })}
               type="email"
-              className="mt-1 w-full px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 bg-white/10 text-[#e5e7eb] placeholder-[#94a3b8] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#14b8a6]"
               placeholder="Enter your email"
             />
             {errors.email && (
-              <p className="text-xs text-red-500 mt-1">
+              <p className="text-xs text-red-400 mt-1">
                 {errors.email.message}
               </p>
             )}
@@ -91,7 +88,7 @@ dispatch(saveUser(response.data.user))
 
           {/* Phone */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium mb-1 text-[#e5e7eb]">
               Phone
             </label>
             <input
@@ -103,11 +100,11 @@ dispatch(saveUser(response.data.user))
                 },
               })}
               type="tel"
-              className="mt-1 w-full px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 bg-white/10 text-[#e5e7eb] placeholder-[#94a3b8] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#14b8a6]"
               placeholder="Enter your phone number"
             />
             {errors.phone && (
-              <p className="text-xs text-red-500 mt-1">
+              <p className="text-xs text-red-400 mt-1">
                 {errors.phone.message}
               </p>
             )}
@@ -115,7 +112,7 @@ dispatch(saveUser(response.data.user))
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium mb-1 text-[#e5e7eb]">
               Password
             </label>
             <input
@@ -127,11 +124,11 @@ dispatch(saveUser(response.data.user))
                 },
               })}
               type="password"
-              className="mt-1 w-full px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 bg-white/10 text-[#e5e7eb] placeholder-[#94a3b8] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#14b8a6]"
               placeholder="Enter your password"
             />
             {errors.password && (
-              <p className="text-xs text-red-500 mt-1">
+              <p className="text-xs text-red-400 mt-1">
                 {errors.password.message}
               </p>
             )}
@@ -139,7 +136,7 @@ dispatch(saveUser(response.data.user))
 
           {/* Confirm Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium mb-1 text-[#e5e7eb]">
               Confirm Password
             </label>
             <input
@@ -149,11 +146,11 @@ dispatch(saveUser(response.data.user))
                   value === password || "Passwords do not match",
               })}
               type="password"
-              className="mt-1 w-full px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 bg-white/10 text-[#e5e7eb] placeholder-[#94a3b8] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#14b8a6]"
               placeholder="Confirm your password"
             />
             {errors.confirmPassword && (
-              <p className="text-xs text-red-500 mt-1">
+              <p className="text-xs text-red-400 mt-1">
                 {errors.confirmPassword.message}
               </p>
             )}
@@ -162,28 +159,28 @@ dispatch(saveUser(response.data.user))
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white text-sm py-2 rounded-md hover:bg-purple-700 transition duration-200"
+            className="w-full bg-[#14b8a6] hover:bg-[#0d9488] text-white font-semibold py-2 rounded-md transition duration-200 shadow-lg"
           >
             Sign Up
           </button>
         </form>
 
-        {/* Google Auth */}
-        <div className="mt-5 text-center">
-          <p className="text-xs text-gray-500 mb-2">Or sign up with</p>
+        {/* Google Login */}
+        <div className="mt-6 text-center">
+          <p className="text-xs text-[#94a3b8] mb-2">Or sign up with</p>
           <button
             onClick={handleGoogleLogin}
-            className="w-full border border-gray-300 py-2 rounded-md flex items-center justify-center hover:bg-gray-100 transition duration-200"
+            className="w-full border border-white/10 py-2 rounded-md flex items-center justify-center bg-white/10 hover:bg-white/20 transition duration-200"
           >
             <img src={googleLogo} alt="Google" className="h-5 w-5 mr-2" />
-            <span className="text-sm">Continue with Google</span>
+            <span className="text-sm text-[#e5e7eb]">Continue with Google</span>
           </button>
         </div>
 
         {/* Login Link */}
-        <p className="mt-5 text-center text-xs text-gray-600">
+        <p className="mt-6 text-center text-xs text-[#94a3b8]">
           Already have an account?{" "}
-          <Link to={"/login-page"} className="text-purple-600 hover:underline">
+          <Link to={"/login-page"} className="text-[#14b8a6] hover:underline">
             Log in
           </Link>
         </p>
