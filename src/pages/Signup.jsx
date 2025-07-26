@@ -12,11 +12,8 @@ export default function SignupForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
-
-  const password = watch("password");
 
   const onSubmit = async (data) => {
     console.log(data);
