@@ -50,7 +50,8 @@ const Header = () => {
         {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-extrabold text-purple-300 tracking-wide drop-shadow-sm hover:text-white transition"
+          className="text-2xl font-extrabold text-[#00ffd0] tracking-wide drop-shadow-sm hover:text-white transition"
+
         >
           💬 WhatsLink
         </Link>
@@ -100,7 +101,7 @@ const Header = () => {
         ) : (
           <Link
             to="/user/link-generating"
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-2 rounded-full shadow-md transition duration-300"
+            className="bg-[#00ffd0] hover:bg-[#0fffc8] text-[#0f2027] px-6 py-2 rounded-full font-semibold shadow-md transition duration-300"
           >
             Get Started
           </Link>
