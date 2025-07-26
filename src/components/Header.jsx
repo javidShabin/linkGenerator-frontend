@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { clearUser } from "../redux/feature/userSlice";
 import { useState } from "react";
+import { axiosInstance } from "../config/axiosInstance";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const { isUserExist } = useSelector((state) => state.user);
@@ -9,9 +11,15 @@ const Header = () => {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
 
-  const handleLogout = () => {
-    dispatch(clearUser());
-    navigate("/login-page");
+  const handleLogout = async () => {
+    try {
+      const response = await axiosInstance.delete("/user/logout");
+      toast.success("Logout success");
+      dispatch(clearUser());
+      navigate("/login-page");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
