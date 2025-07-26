@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { clearUser } from "../redux/feature/userSlice";
-import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { clearUser, saveUser } from "../redux/feature/userSlice";
+import { useEffect, useState } from "react";
 import { axiosInstance } from "../config/axiosInstance";
 import toast from "react-hot-toast";
 
@@ -9,16 +9,36 @@ const Header = () => {
   const { isUserExist } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [openMenu, setOpenMenu] = useState(false);
+
+  const checkUser = async () => {
+    try {
+      const response = await axiosInstance.get("/user/check-user");
+      if (response?.data?.user) {
+        dispatch(saveUser(response.data.user)); // Save user from backend
+      }
+    } catch (error) {
+      dispatch(clearUser());
+      console.error("Error checking user:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (!isUserExist) {
+      checkUser();
+    }
+  }, [location.pathname]);
 
   const handleLogout = async () => {
     try {
-      const response = await axiosInstance.delete("/user/logout");
+      await axiosInstance.delete("/user/logout");
       toast.success("Logout success");
       dispatch(clearUser());
       navigate("/login-page");
     } catch (error) {
-      console.log(error);
+      console.error("Logout error:", error);
+      toast.error("Logout failed");
     }
   };
 
