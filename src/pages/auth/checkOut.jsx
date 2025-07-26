@@ -1,12 +1,51 @@
 import React from "react";
 import { CheckCircle2 } from "lucide-react";
-import { createCheckout } from "../../api/stripe"; // import the API call
+import { createCheckout } from "../../api/stripe"; // This function must accept the selected plan
+
+const features = [
+  "Generate & download QR codes (PNG, JPEG, SVG)",
+  "Save and track link history",
+  "Branded landing pages",
+  "Custom QR color & logo",
+  "Priority support",
+];
+
+const PlanCard = ({ title, price, duration, features, onClick, highlight }) => (
+  <div
+    className={`flex flex-col justify-between p-6 rounded-3xl border shadow-lg backdrop-blur-md transition-all duration-300 ${
+      highlight
+        ? "bg-white/10 border-purple-500 text-white scale-105"
+        : "bg-white/5 border-white/20 text-white"
+    }`}
+  >
+    <div>
+      <h2 className="text-2xl font-bold mb-2">{title}</h2>
+      <p className="text-lg text-purple-300 mb-4">
+        {price} <span className="text-sm text-gray-300">/{duration}</span>
+      </p>
+      <ul className="space-y-3 mb-6">
+        {features.map((item, idx) => (
+          <li key={idx} className="flex items-center">
+            <CheckCircle2 className="text-green-400 w-5 h-5 mr-2" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <button
+      onClick={onClick}
+      className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-xl font-semibold text-lg transition"
+    >
+      Choose Plan
+    </button>
+  </div>
+);
 
 const ProPlanPage = () => {
-  const handleProCheckout = async () => {
+  const handleCheckout = async (selectedPlan) => {
     try {
-      const checkoutUrl = await createCheckout();
-      window.location.href = checkoutUrl; // Redirect to Stripe Checkout
+      const checkoutUrl = await createCheckout(selectedPlan); // Pass selected plan to backend
+      window.location.href = checkoutUrl;
     } catch (err) {
       console.error("Stripe checkout error:", err);
       alert("Something went wrong. Please try again.");
@@ -14,55 +53,26 @@ const ProPlanPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f3f4f6] to-[#ffffff] flex items-center justify-center px-4 py-10">
-      <div className="max-w-4xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden">
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Left Side - Info */}
-          <div className="p-10 flex flex-col justify-center">
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">
-              Upgrade to Pro
-            </h1>
-            <p className="text-gray-600 mb-6 text-lg">
-              Unlock powerful features to enhance your link generation,
-              branding, and engagement. Ideal for professionals and growing
-              businesses.
-            </p>
-            <ul className="space-y-4">
-              {[
-                "Generate and download QR codes (PNG, JPEG, SVG)",
-                "Save and track link history",
-                "Branded landing pages",
-                "Custom QR color & logo",
-                "Priority support",
-              ].map((item, idx) => (
-                <li key={idx} className="flex items-center text-gray-700">
-                  <CheckCircle2 className="text-green-500 mr-2" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8">
-              <button
-                onClick={handleProCheckout}
-                className="inline-block bg-gradient-to-r from-[#7F56D9] to-[#9E77ED] text-white px-6 py-3 rounded-xl font-semibold text-lg hover:scale-105 transition"
-              >
-                Go Pro – ₹199/year
-              </button>
-              <p className="text-xs text-gray-500 mt-2">
-                One-time: $5 available
-              </p>
-            </div>
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#141E30] to-[#243B55] px-6 py-16">
+      <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Plan 1 - One Time */}
+        <PlanCard
+          title="One-Time Plan"
+          price="₹499"
+          duration="lifetime"
+          features={features}
+          onClick={() => handleCheckout("one-time")}
+        />
 
-          {/* Right Side - Illustration */}
-          <div className="bg-gradient-to-br from-[#ede9fe] to-[#f3e8ff] p-10 flex items-center justify-center">
-            <img
-              src="/assets/premium-illustration.svg"
-              alt="Pro Features"
-              className="max-w-full h-64 object-contain"
-            />
-          </div>
-        </div>
+        {/* Plan 2 - Pro Plan */}
+        <PlanCard
+          title="Pro Plan"
+          price="₹199"
+          duration="per year"
+          features={features}
+          onClick={() => handleCheckout("pro-plan")}
+          highlight={true}
+        />
       </div>
     </div>
   );
