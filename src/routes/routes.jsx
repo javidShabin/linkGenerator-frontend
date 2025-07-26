@@ -9,7 +9,7 @@ import QrGenerator from "../pages/pro/QrGenerator";
 import ProPlanPage from "../pages/auth/checkOut";
 import PaymentSuccess from "../pages/auth/paymentSuccess";
 import PaymentCancel from "../pages/auth/paymentCancel";
-
+import ProUser from "./protuct/ProUser";
 
 export const router = createBrowserRouter([
   {
@@ -19,17 +19,17 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "signup-page",
-        element: <SignupForm />
+        element: <SignupForm />,
       },
       {
         path: "login-page",
-        element: <LoginForm />
+        element: <LoginForm />,
       },
-      
+
       {
         path: "user",
         element: <AuthUser />,
@@ -37,27 +37,33 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "link-generating",
-            element: <LinkGenerator />
-          },
-          {
-            path: "qr-generator/:slug",
-            element: <QrGenerator />
+            element: <LinkGenerator />,
           },
           {
             path: "check-out",
-            element: <ProPlanPage />
+            element: <ProPlanPage />,
           },
           {
             path: "payment-success",
-            element: <PaymentSuccess />
+            element: <PaymentSuccess />,
           },
           {
             path: "payment-cancel",
-            element: <PaymentCancel />
-          }
-          
-        ]
-      }
-    ]
+            element: <PaymentCancel />,
+          },
+        ],
+      },
+      {
+        path: "pro-user",
+        element: <ProUser />,
+
+        children: [
+          {
+            path: "qr-generator/:slug",
+            element: <QrGenerator />,
+          },
+        ],
+      },
+    ],
   },
 ]);

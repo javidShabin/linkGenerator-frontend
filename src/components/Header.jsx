@@ -13,6 +13,8 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  console.log(isUserExist)
+
   const checkUser = async () => {
     try {
       const response = await axiosInstance.get("/user/check-user");

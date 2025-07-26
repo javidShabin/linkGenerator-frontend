@@ -106,7 +106,7 @@ const LinkGenerator = () => {
               </a>
             </div>
 
-            <Link to={`/user/qr-generator/${slug}`} className="block mt-6">
+            <Link to={`/pro-user/qr-generator/${slug}`} className="block mt-6">
               <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-xl text-sm transition">
                 🧾 Generate QR Code
               </button>
