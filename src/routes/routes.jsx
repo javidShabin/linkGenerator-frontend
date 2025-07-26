@@ -7,6 +7,7 @@ import LinkGenerator from "../pages/auth/Link";
 import AuthUser from "./protuct/AuthUser";
 import QrGenerator from "../pages/pro/QrGenerator";
 import ProPlanPage from "../pages/auth/checkOut";
+import PaymentSuccess from "../pages/auth/paymentSuccess";
 
 
 export const router = createBrowserRouter([
@@ -44,7 +45,12 @@ export const router = createBrowserRouter([
           {
             path: "check-out",
             element: <ProPlanPage />
+          },
+          {
+            path: "payment-success",
+            element: <PaymentSuccess />
           }
+          
         ]
       }
     ]

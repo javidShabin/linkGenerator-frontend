@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Try to load user from localStorage
+const userFromStorage = localStorage.getItem("user");
+
 const initialState = {
-  isUserExist: false,
-  user: {},
+  isUserExist: !!userFromStorage,
+  user: userFromStorage ? JSON.parse(userFromStorage) : {},
 };
 
 export const userSlice = createSlice({
@@ -12,12 +15,12 @@ export const userSlice = createSlice({
     saveUser: (state, action) => {
       state.isUserExist = true;
       state.user = action.payload;
-      // ✅ Removed localStorage logic
+      localStorage.setItem("user", JSON.stringify(action.payload)); // Save to localStorage
     },
     clearUser: (state) => {
       state.isUserExist = false;
       state.user = {};
-      // ✅ Removed localStorage logic
+      localStorage.removeItem("user"); // Remove from localStorage
     },
   },
 });
