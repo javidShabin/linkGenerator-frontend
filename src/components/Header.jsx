@@ -49,7 +49,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link
-          to="/user/check-out"
+          to="/"
           className="text-2xl font-extrabold text-purple-300 tracking-wide drop-shadow-sm hover:text-white transition"
         >
           💬 WhatsLink

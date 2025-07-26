@@ -89,7 +89,7 @@ const Home = () => {
         <p className="text-lg mb-8 max-w-2xl mx-auto text-white/90">
           Get access to premium features like QR customization, branded pages, and link history. One-time payment — no subscriptions.
         </p>
-        <Link to="/pricing">
+        <Link to="/user/check-out">
           <button className="bg-white text-purple-700 font-semibold px-8 py-3 text-lg rounded-xl shadow-lg hover:bg-gray-100 transition">
             💎 View Pricing
           </button>
