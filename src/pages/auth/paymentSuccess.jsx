@@ -40,10 +40,10 @@ const PaymentSuccess = () => {
         <p className="text-gray-300 mb-4">Plan: <span className="text-white font-semibold">{paymentInfo.plan}</span></p>
         <p className="text-gray-300 mb-6">Amount Paid: ₹{paymentInfo.amount}</p>
         <Link
-          to="/dashboard"
+          to="/"
           className="inline-block bg-purple-600 hover:bg-purple-700 transition text-white px-6 py-3 rounded-xl font-medium text-lg"
         >
-          Go to Dashboard
+          Go to Home
         </Link>
       </div>
     </div>
