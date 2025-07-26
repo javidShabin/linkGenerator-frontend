@@ -6,6 +6,7 @@ import LoginForm from "../pages/Login";
 import LinkGenerator from "../pages/auth/Link";
 import AuthUser from "./protuct/AuthUser";
 import QrGenerator from "../pages/pro/QrGenerator";
+import ProPlanPage from "../pages/auth/checkOut";
 
 
 export const router = createBrowserRouter([
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
           {
             path: "qr-generator/:slug",
             element: <QrGenerator />
+          },
+          {
+            path: "check-out",
+            element: <ProPlanPage />
           }
         ]
       }
