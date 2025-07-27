@@ -8,7 +8,8 @@ const UserSidebar = () => {
 
   const menu = [
     { name: "Home", path: "/" },
-    { name: "Dashboard", path: "/user/dashboard/dashbord" },
+    { name: "Dashboard", path: "/user/dashboard" },
+    { name: "Profile", path: "/user/dashboard/profile" },
     { name: "My Links", path: "/user/dashboard/my-links" },
     { name: "Settings", path: "/user/dashboard/settings" },
   ];
@@ -30,7 +31,9 @@ const UserSidebar = () => {
         className={`fixed top-0 left-0 z-40 h-full w-64 bg-[#0f172a] text-white p-6 transition-transform duration-300
         ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
       >
-        <Link to={"/"}><h2 className="text-2xl font-bold mb-8">💬 WhatsLink</h2></Link>
+        <Link to={"/"}>
+          <h2 className="text-2xl font-bold mb-8">💬 WhatsLink</h2>
+        </Link>
         <nav className="flex flex-col gap-4">
           {menu.map((item) => (
             <Link

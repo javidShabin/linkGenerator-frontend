@@ -13,6 +13,7 @@ import ProUser from "./protuct/ProUser";
 import DashboardLayout from "../layout/DashboardLayout";
 import ProfilePage from "../pages/auth/profile";
 import MyLinks from "../pages/auth/MyLinks";
+import Dashbord from "../pages/auth/Dashbord";
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
             children: [
               {
                 index: true,
+                element:<Dashbord /> ,
+              },
+              {
+                path: "profile",
                 element: <ProfilePage />,
               },
               {
