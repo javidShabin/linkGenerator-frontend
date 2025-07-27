@@ -13,7 +13,6 @@ import ProUser from "./protuct/ProUser";
 import DashboardLayout from "../layout/DashboardLayout";
 import ProfilePage from "../pages/auth/profile";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -34,7 +33,7 @@ export const router = createBrowserRouter([
       },
 
       // ***************************************************************************
-      // ************************* Auth (Loggined) user routes setup************************** 
+      // ************************* Auth (Loggined) user routes setup**************************
       {
         path: "user",
         element: <AuthUser />,
@@ -64,12 +63,12 @@ export const router = createBrowserRouter([
             element: <DashboardLayout />,
 
             children: [
-             {
-              index: true,
-              element: <ProfilePage />
-             }
-            ]
-          }
+              {
+                index: true,
+                element: <ProfilePage />,
+              },
+            ],
+          },
         ],
       },
 
