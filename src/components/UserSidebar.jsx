@@ -8,8 +8,8 @@ const UserSidebar = () => {
 
   const menu = [
     { name: "Home", path: "/" },
-    { name: "Dashboard", path: "/user/dashbord/dashbord" },
-    { name: "My Links", path: "/user/dashboard/links" },
+    { name: "Dashboard", path: "/user/dashboard/dashbord" },
+    { name: "My Links", path: "/user/dashboard/my-links" },
     { name: "Settings", path: "/user/dashboard/settings" },
   ];
 

@@ -12,6 +12,7 @@ import PaymentCancel from "../pages/auth/paymentCancel";
 import ProUser from "./protuct/ProUser";
 import DashboardLayout from "../layout/DashboardLayout";
 import ProfilePage from "../pages/auth/profile";
+import MyLinks from "../pages/auth/MyLinks";
 
 export const router = createBrowserRouter([
   {
@@ -59,7 +60,7 @@ export const router = createBrowserRouter([
           // ******************** User dashbord routes setup***************************
 
           {
-            path: "dashbord",
+            path: "dashboard",
             element: <DashboardLayout />,
 
             children: [
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
                 index: true,
                 element: <ProfilePage />,
               },
+              {
+                path: "my-links",
+                element: <MyLinks />
+              }
             ],
           },
         ],
