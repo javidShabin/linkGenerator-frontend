@@ -11,7 +11,18 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState(false);
+  const [hideHeader, setHiderHeader] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const isProfilePage = location.pathname === "/user/profile";
+
+  useEffect(() => {
+    if (isProfilePage) {
+      setHiderHeader("hidden");
+    } else {
+      setHiderHeader("sticky");
+    }
+  }, [isProfilePage]);
 
   const checkUser = async () => {
     try {
@@ -45,7 +56,9 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full bg-black/60 backdrop-blur-md border-b border-white/10 shadow-md sticky top-0 z-50">
+    <header
+      className={`${hideHeader} w-full bg-black/60 backdrop-blur-md border-b border-white/10 shadow-md top-0 z-50`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link
@@ -57,7 +70,9 @@ const Header = () => {
 
         {/* Right Side */}
         {loading ? (
-          <span className="text-gray-300 text-sm animate-pulse">Loading...</span>
+          <span className="text-gray-300 text-sm animate-pulse">
+            Loading...
+          </span>
         ) : isUserExist ? (
           <div className="relative">
             <button

@@ -10,6 +10,8 @@ import ProPlanPage from "../pages/auth/checkOut";
 import PaymentSuccess from "../pages/auth/paymentSuccess";
 import PaymentCancel from "../pages/auth/paymentCancel";
 import ProUser from "./protuct/ProUser";
+import DashboardLayout from "../layout/DashboardLayout";
+
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +53,10 @@ export const router = createBrowserRouter([
             path: "payment-cancel",
             element: <PaymentCancel />,
           },
+          {
+            path: "profile",
+            element: <DashboardLayout />
+          }
         ],
       },
       {
