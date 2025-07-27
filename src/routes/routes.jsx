@@ -11,6 +11,7 @@ import PaymentSuccess from "../pages/auth/paymentSuccess";
 import PaymentCancel from "../pages/auth/paymentCancel";
 import ProUser from "./protuct/ProUser";
 import DashboardLayout from "../layout/DashboardLayout";
+import ProfilePage from "../pages/auth/profile";
 
 
 export const router = createBrowserRouter([
@@ -32,6 +33,8 @@ export const router = createBrowserRouter([
         element: <LoginForm />,
       },
 
+      // ***************************************************************************
+      // ************************* Auth (Loggined) user routes setup************************** 
       {
         path: "user",
         element: <AuthUser />,
@@ -53,12 +56,25 @@ export const router = createBrowserRouter([
             path: "payment-cancel",
             element: <PaymentCancel />,
           },
+          // **************************************************************************
+          // ******************** User dashbord routes setup***************************
+
           {
-            path: "profile",
-            element: <DashboardLayout />
+            path: "dashbord",
+            element: <DashboardLayout />,
+
+            children: [
+             {
+              index: true,
+              element: <ProfilePage />
+             }
+            ]
           }
         ],
       },
+
+      // *******************************************************************************
+      // *********************** Premium user routes setup******************************
       {
         path: "pro-user",
         element: <ProUser />,

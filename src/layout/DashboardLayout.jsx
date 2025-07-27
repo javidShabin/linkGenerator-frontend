@@ -11,9 +11,8 @@ const DashboardLayout = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    handleResize(); // Run once on mount
+    handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 

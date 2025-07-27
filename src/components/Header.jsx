@@ -14,15 +14,15 @@ const Header = () => {
   const [hideHeader, setHiderHeader] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const isProfilePage = location.pathname === "/user/profile";
+  const isDashboardRoute = location.pathname.startsWith("/user/dashbord");
 
   useEffect(() => {
-    if (isProfilePage) {
+    if (isDashboardRoute) {
       setHiderHeader("hidden");
     } else {
       setHiderHeader("sticky");
     }
-  }, [isProfilePage]);
+  }, [isDashboardRoute]);
 
   const checkUser = async () => {
     try {
@@ -97,7 +97,7 @@ const Header = () => {
             {openMenu && (
               <div className="absolute right-0 mt-2 w-44 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg text-white overflow-hidden z-50">
                 <Link
-                  to="/user/profile"
+                  to="/user/dashbord"
                   className="block px-4 py-2 hover:bg-yellow-400/10 text-[#f3f4f6] transition"
                   onClick={() => setOpenMenu(false)}
                 >

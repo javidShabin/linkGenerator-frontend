@@ -7,7 +7,7 @@ const ProfilePage = () => {
     const getUserProfile = async () => {
       try {
         const response = await axiosInstance.get("/user/user-profile")
-        console.log(response)
+        console.log(response.data)
       } catch (error) {
         console.log(error)
       }
