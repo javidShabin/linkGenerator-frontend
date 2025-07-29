@@ -6,25 +6,22 @@ const BrandPage = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [profilePic, setProfilePic] = useState("");
-
-  useEffect(() => {
-    const getUserDetails = async () => {
-      try {
-        const response = await axiosInstance.get("/link/latest-link");
-        const userData = response.data.data.user;
-        setChatLink(response.data.data.whatsappLink);
-        setUserName(userData.userName || "Awesome User");
-        setUserEmail(userData.email || "example@example.com");
-        setProfilePic(
-          userData.profilePic ||
-            "https://ui-avatars.com/api/?name=" + userData.name?.split(" ").join("+")
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getUserDetails();
-  }, []);
+ const userId = window.location.pathname.split("/")[1];
+   useEffect(() => {
+    const getLink = async () => {
+        try {
+            const response = await axiosInstance.get(`/link/get-latest-link/${userId}`)
+            setChatLink(response.data.data.whatsappLink)
+            setUserName(response.data.data.user.userName)
+            setUserEmail(response.data.data.user.email)
+            setProfilePic(response.data.data.user.profilePic)
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    getLink()
+   },[])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] px-4 py-12 flex items-center justify-center">

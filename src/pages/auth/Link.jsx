@@ -1,3 +1,4 @@
+// ...imports remain unchanged
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { axiosInstance } from "../../config/axiosInstance";
@@ -7,7 +8,7 @@ const LinkGenerator = () => {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [generatedLink, setGeneratedLink] = useState("");
-  const [brandedLink, setBrandedLink] = useState(""); // ✅ NEW STATE
+  const [brandedLink, setBrandedLink] = useState(""); // ✅
   const [shortLink, setShortLink] = useState("");
   const [loading, setLoading] = useState(false);
   const [slug, setSlug] = useState("");
@@ -17,7 +18,7 @@ const LinkGenerator = () => {
     setLoading(true);
     setGeneratedLink("");
     setShortLink("");
-    setBrandedLink(""); // ✅ Reset branded link
+    setBrandedLink("");
 
     try {
       const res = await axiosInstance.post("/link/create-link", {
@@ -27,11 +28,11 @@ const LinkGenerator = () => {
 
       const fullLink = res?.data?.data?.whatsappLink;
       const generatedSlug = res?.data?.data?.slug;
-      const brandedUrl = res?.data?.data?.brandedPageUrl; // ✅
+      const brandedUrl = res?.data?.data?.brandedPageUrl;
 
       setGeneratedLink(fullLink);
       setSlug(generatedSlug);
-      if (brandedUrl) setBrandedLink(brandedUrl); // ✅
+      if (brandedUrl) setBrandedLink(brandedUrl);
 
       toast.success("Link generated!");
     } catch (error) {
@@ -93,9 +94,9 @@ const LinkGenerator = () => {
               {shortLink || generatedLink}
             </a>
 
-            {/* ✅ Show branded page if available */}
+            {/* ✅ Branded Page with copy */}
             {brandedLink && (
-              <div className="mt-4">
+              <div className="mt-4 space-y-2">
                 <p className="text-sm font-medium text-[#e5e7eb]">Branded Page:</p>
                 <a
                   href={brandedLink}
@@ -105,6 +106,14 @@ const LinkGenerator = () => {
                 >
                   {brandedLink}
                 </a>
+                <div>
+                  <button
+                    onClick={() => copyToClipboard(brandedLink)}
+                    className="mt-2 bg-white/10 hover:bg-white/20 text-[#e5e7eb] px-4 py-2 rounded-xl text-sm transition"
+                  >
+                    📋 Copy Branded Link
+                  </button>
+                </div>
               </div>
             )}
 

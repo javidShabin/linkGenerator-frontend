@@ -34,6 +34,10 @@ export const router = createBrowserRouter([
         path: "login-page",
         element: <LoginForm />,
       },
+      {
+        path: "/:userId",
+        element: <BrandPage />,
+      },
 
       // ***************************************************************************
       // ************************* Auth (Loggined) user routes setup**************************
@@ -96,10 +100,7 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: "/:userName",
-        element: <BrandPage />,
-      },
+      
     ],
   },
 ]);
