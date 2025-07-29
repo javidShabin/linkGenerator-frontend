@@ -58,8 +58,6 @@ const BrandPage = () => {
 
           <a
             href={chatLink}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-block bg-[#14b8a6] hover:bg-[#0d9488] text-black font-semibold py-3 px-8 rounded-xl transition-transform transform hover:scale-105 duration-300 shadow-lg"
           >
             💬 Chat Now
