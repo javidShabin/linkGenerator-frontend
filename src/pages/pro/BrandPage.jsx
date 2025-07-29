@@ -2,27 +2,43 @@ import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../config/axiosInstance";
 
 const BrandPage = () => {
+  const [slug, setSlug] = useState("");
   const [chatLink, setChatLink] = useState("");
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [profilePic, setProfilePic] = useState("");
- const userId = window.location.pathname.split("/")[1];
-   useEffect(() => {
+  const userId = window.location.pathname.split("/")[1];
+  useEffect(() => {
     const getLink = async () => {
-        try {
-            const response = await axiosInstance.get(`/link/get-latest-link/${userId}`)
-            setChatLink(response.data.data.whatsappLink)
-            setUserName(response.data.data.user.userName)
-            setUserEmail(response.data.data.user.email)
-            setProfilePic(response.data.data.user.profilePic)
-            console.log(response)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    getLink()
-   },[])
+      try {
+        const response = await axiosInstance.get(
+          `/link/get-latest-link/${userId}`
+        );
+        setSlug(response.data.data.slug);
+        setChatLink(response.data.data.whatsappLink);
+        setUserName(response.data.data.user.userName);
+        setUserEmail(response.data.data.user.email);
+        setProfilePic(response.data.data.user.profilePic);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getLink();
+  }, []);
 
+  useEffect(() => {
+    if (!slug) return; 
+    const trackLinkUsage = async () => {
+      try {
+        const response = await axiosInstance.get(`/link/track-link/${slug}`);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    trackLinkUsage();
+  }, [slug]);
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] px-4 py-12 flex items-center justify-center">
       <div className="w-full max-w-xl bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-6 md:p-10 text-[#e5e7eb] text-center transition-all duration-300">
@@ -43,8 +59,8 @@ const BrandPage = () => {
 
         {/* Custom Message */}
         <p className="text-gray-300 text-base md:text-lg mb-6 leading-relaxed">
-          Let’s connect! I’m just a message away. Whether you have a question,
-          a collaboration idea, or just want to say hi, feel free to reach out.
+          Let’s connect! I’m just a message away. Whether you have a question, a
+          collaboration idea, or just want to say hi, feel free to reach out.
         </p>
 
         {/* Call to Action */}
