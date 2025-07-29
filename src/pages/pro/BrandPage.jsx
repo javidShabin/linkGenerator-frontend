@@ -38,7 +38,7 @@ const BrandPage = () => {
       }
     };
     trackLinkUsage();
-  }, [slug]);
+  }, []);
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] px-4 py-12 flex items-center justify-center">
       <div className="w-full max-w-xl bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-6 md:p-10 text-[#e5e7eb] text-center transition-all duration-300">
@@ -70,6 +70,7 @@ const BrandPage = () => {
           </p>
 
           <a
+          
             href={chatLink}
             className="inline-block bg-[#14b8a6] hover:bg-[#0d9488] text-black font-semibold py-3 px-8 rounded-xl transition-transform transform hover:scale-105 duration-300 shadow-lg"
           >
