@@ -7,6 +7,7 @@ const LinkGenerator = () => {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [generatedLink, setGeneratedLink] = useState("");
+  const [brandedLink, setBrandedLink] = useState(""); // ✅ NEW STATE
   const [shortLink, setShortLink] = useState("");
   const [loading, setLoading] = useState(false);
   const [slug, setSlug] = useState("");
@@ -16,6 +17,7 @@ const LinkGenerator = () => {
     setLoading(true);
     setGeneratedLink("");
     setShortLink("");
+    setBrandedLink(""); // ✅ Reset branded link
 
     try {
       const res = await axiosInstance.post("/link/create-link", {
@@ -25,9 +27,11 @@ const LinkGenerator = () => {
 
       const fullLink = res?.data?.data?.whatsappLink;
       const generatedSlug = res?.data?.data?.slug;
+      const brandedUrl = res?.data?.data?.brandedPageUrl; // ✅
 
       setGeneratedLink(fullLink);
       setSlug(generatedSlug);
+      if (brandedUrl) setBrandedLink(brandedUrl); // ✅
 
       toast.success("Link generated!");
     } catch (error) {
@@ -88,6 +92,21 @@ const LinkGenerator = () => {
             >
               {shortLink || generatedLink}
             </a>
+
+            {/* ✅ Show branded page if available */}
+            {brandedLink && (
+              <div className="mt-4">
+                <p className="text-sm font-medium text-[#e5e7eb]">Branded Page:</p>
+                <a
+                  href={brandedLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#14b8a6] break-all font-semibold underline"
+                >
+                  {brandedLink}
+                </a>
+              </div>
+            )}
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
               <button

@@ -14,6 +14,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import ProfilePage from "../pages/auth/profile";
 import MyLinks from "../pages/auth/MyLinks";
 import Dashbord from "../pages/auth/Dashbord";
+import BrandPage from "../pages/pro/BrandPage";
 
 export const router = createBrowserRouter([
   {
@@ -67,7 +68,7 @@ export const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element:<Dashbord /> ,
+                element: <Dashbord />,
               },
               {
                 path: "profile",
@@ -75,8 +76,8 @@ export const router = createBrowserRouter([
               },
               {
                 path: "my-links",
-                element: <MyLinks />
-              }
+                element: <MyLinks />,
+              },
             ],
           },
         ],
@@ -94,6 +95,10 @@ export const router = createBrowserRouter([
             element: <QrGenerator />,
           },
         ],
+      },
+      {
+        path: "/:userName",
+        element: <BrandPage />,
       },
     ],
   },
