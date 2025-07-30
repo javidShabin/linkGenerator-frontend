@@ -6,7 +6,10 @@ import toast from 'react-hot-toast';
 const MyLinks = () => {
   const [links, setLinks] = useState([]);
   const [editingLink, setEditingLink] = useState(null);
-  const [formData, setFormData] = useState({ message: '', slug: '', phone: '' });
+  const [formData, setFormData] = useState({ message: '', slug: '', phone: '', customSlug: '' });
+
+  console.log(formData)
+  
 
   const fetchLinks = async () => {
     try {
@@ -41,6 +44,7 @@ const MyLinks = () => {
       message: link.message || '',
       slug: link.slug || '',
       phone: link.phone || '',
+      
     });
   };
 
@@ -142,6 +146,16 @@ const MyLinks = () => {
                   type="text"
                   name="slug"
                   value={formData.slug}
+                  onChange={handleFormChange}
+                  className="w-full p-2 rounded-md bg-[#0f172a] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-300 mb-1">Custom slug</label>
+                <input
+                  type="text"
+                  name="customSlug"
+                  value={formData.customSlug}
                   onChange={handleFormChange}
                   className="w-full p-2 rounded-md bg-[#0f172a] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 />
