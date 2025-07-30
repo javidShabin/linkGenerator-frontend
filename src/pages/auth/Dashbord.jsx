@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../config/axiosInstance";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -42,10 +43,11 @@ const Dashboard = () => {
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Cards Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
           {/* Total & Top Link Card */}
           <div className="bg-[#1e293b] p-8 rounded-3xl shadow-2xl min-h-[200px] hover:shadow-[#dd63ff40] transition-all">
-            <h2 className="text-xl font-semibold text-[#dd63ff]">Links Summary</h2>
+            <h2 className="text-xl font-semibold text-[#dd63ff]">
+              Links Summary
+            </h2>
             <p className="text-4xl font-bold mt-4">{totalLinks}</p>
             <p className="text-base text-gray-400 mt-2">Total Links Created</p>
             {topLink?.slug && (
@@ -61,19 +63,47 @@ const Dashboard = () => {
             )}
           </div>
 
+          {/* Navigation to link creation */}
+          {user && (
+            <div className="bg-[#1e293b] p-8 rounded-3xl shadow-2xl hover:shadow-[#dd63ff40] transition-all duration-300">
+              <h2 className="text-2xl font-bold text-[#dd63ff] mb-4">
+                ✨ Create Link
+              </h2>
+              <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+                Quickly generate your personalized WhatsApp link to share with
+                others.
+              </p>
+              <Link to="/user/link-generating">
+                <button className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-200">
+                  + Create Link
+                </button>
+              </Link>
+            </div>
+          )}
+
           {/* Pro Membership */}
           {user && (
             <div className="bg-[#1e293b] p-8 rounded-3xl shadow-2xl min-h-[200px] hover:shadow-[#dd63ff40] transition-all">
-              <h2 className="text-xl font-semibold text-[#dd63ff]">Pro Membership</h2>
+              <h2 className="text-xl font-semibold text-[#dd63ff]">
+                Pro Membership
+              </h2>
               {user.isPro ? (
                 <>
-                  <p className="text-4xl font-bold mt-4 text-green-400">✅ Active</p>
-                  <p className="text-base text-gray-400 mt-2">Full access enabled</p>
+                  <p className="text-4xl font-bold mt-4 text-green-400">
+                    ✅ Active
+                  </p>
+                  <p className="text-base text-gray-400 mt-2">
+                    Full access enabled
+                  </p>
                 </>
               ) : (
                 <>
-                  <p className="text-4xl font-bold mt-4 text-yellow-400">🚫 Inactive</p>
-                  <p className="text-base text-gray-400 mt-2">Upgrade for full access</p>
+                  <p className="text-4xl font-bold mt-4 text-yellow-400">
+                    🚫 Inactive
+                  </p>
+                  <p className="text-base text-gray-400 mt-2">
+                    Upgrade for full access
+                  </p>
                 </>
               )}
             </div>
@@ -82,7 +112,9 @@ const Dashboard = () => {
           {/* Account Type */}
           {user && (
             <div className="bg-[#1e293b] p-8 rounded-3xl shadow-2xl min-h-[200px] hover:shadow-[#dd63ff40] transition-all">
-              <h2 className="text-xl font-semibold text-[#dd63ff]">Account Type</h2>
+              <h2 className="text-xl font-semibold text-[#dd63ff]">
+                Account Type
+              </h2>
               <p className="text-4xl font-bold mt-4">
                 {user.isPro ? "Pro" : "Free"}
               </p>
@@ -95,16 +127,19 @@ const Dashboard = () => {
           {/* Last Login */}
           {user && (
             <div className="bg-[#1e293b] p-8 rounded-3xl shadow-2xl min-h-[200px] hover:shadow-[#dd63ff40] transition-all">
-              <h2 className="text-xl font-semibold text-[#dd63ff]">Last Login</h2>
+              <h2 className="text-xl font-semibold text-[#dd63ff]">
+                Last Login
+              </h2>
               <p className="text-2xl font-bold mt-4">
                 {user.lastLogin
                   ? new Date(user.lastLogin).toLocaleString()
                   : "Not available"}
               </p>
-              <p className="text-base text-gray-400 mt-2">Last activity recorded</p>
+              <p className="text-base text-gray-400 mt-2">
+                Last activity recorded
+              </p>
             </div>
           )}
-
         </div>
       </div>
     </div>

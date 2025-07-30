@@ -1,17 +1,26 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Menu, X } from "lucide-react"; // Requires: npm install lucide-react
+import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 
 const UserSidebar = () => {
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [showSettingsLinks, setShowSettingsLinks] = useState(false);
 
   const menu = [
     { name: "Home", path: "/" },
     { name: "Dashboard", path: "/user/dashboard" },
     { name: "Profile", path: "/user/dashboard/profile" },
     { name: "My Links", path: "/user/dashboard/my-links" },
-    { name: "Settings", path: "/user/dashboard/settings" },
+    {
+      name: "Settings",
+      path: "/user/dashboard/settings",
+      subLinks: [
+        { name: "Account", path: "/user/dashboard/settings/account" },
+        { name: "Security", path: "/user/dashboard/settings/security" },
+        { name: "Notifications", path: "/user/dashboard/settings/notifications" },
+      ],
+    },
   ];
 
   return (
@@ -34,25 +43,57 @@ const UserSidebar = () => {
         <Link to={"/"}>
           <h2 className="text-2xl font-bold mb-8">💬 WhatsLink</h2>
         </Link>
-        <nav className="flex flex-col gap-4">
-          {menu.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              onClick={() => setIsOpen(false)}
-              className={`px-4 py-2 rounded-lg transition ${
-                pathname === item.path
-                  ? "bg-[#14b8a6] text-white"
-                  : "hover:bg-white/10"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <nav className="flex flex-col gap-2">
+          {menu.map((item) =>
+            item.subLinks ? (
+              <div key={item.name}>
+                <button
+                  onClick={() => setShowSettingsLinks((prev) => !prev)}
+                  className={`w-full text-left px-4 py-2 rounded-lg flex justify-between items-center ${
+                    pathname === item.path ? "bg-[#14b8a6]" : "hover:bg-white/10"
+                  }`}
+                >
+                  <span>{item.name}</span>
+                  {showSettingsLinks ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                </button>
+                {showSettingsLinks && (
+                  <div className="ml-4 mt-2 space-y-1">
+                    {item.subLinks.map((sub) => (
+                      <Link
+                        key={sub.name}
+                        to={sub.path}
+                        onClick={() => setIsOpen(false)}
+                        className={`block px-4 py-1.5 rounded-md text-sm ${
+                          pathname === sub.path
+                            ? "bg-[#0f766e] text-white"
+                            : "hover:bg-white/10"
+                        }`}
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={() => setIsOpen(false)}
+                className={`px-4 py-2 rounded-lg transition ${
+                  pathname === item.path
+                    ? "bg-[#14b8a6] text-white"
+                    : "hover:bg-white/10"
+                }`}
+              >
+                {item.name}
+              </Link>
+            )
+          )}
         </nav>
       </aside>
 
-      {/* Overlay when sidebar is open (mobile only) */}
+      {/* Mobile Overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-30 md:hidden"
