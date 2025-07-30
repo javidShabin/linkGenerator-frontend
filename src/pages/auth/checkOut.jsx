@@ -1,6 +1,7 @@
 import React from "react";
 import { CheckCircle2 } from "lucide-react";
 import { createCheckout } from "../../api/stripe"; // This function must accept the selected plan
+import toast from "react-hot-toast";
 
 const features = [
   "Generate & download QR codes (PNG, JPEG, SVG)",
@@ -48,7 +49,8 @@ const ProPlanPage = () => {
       window.location.href = checkoutUrl;
     } catch (err) {
       console.error("Stripe checkout error:", err);
-      alert("Something went wrong. Please try again.");
+      toast.error(err.response.data.error)
+      
     }
   };
 
