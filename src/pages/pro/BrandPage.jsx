@@ -19,7 +19,6 @@ const BrandPage = () => {
         setUserName(response.data.data.user.userName);
         setUserEmail(response.data.data.user.email);
         setProfilePic(response.data.data.user.profileImg);
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
