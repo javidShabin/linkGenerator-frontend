@@ -15,6 +15,7 @@ const ProfilePage = () => {
     const getUserProfile = async () => {
       try {
         const response = await axiosInstance.get("/user/user-profile");
+        console.log(response)
         setProfileDetails(response.data.user);
       } catch (error) {
         console.error(error);
@@ -70,7 +71,7 @@ const ProfilePage = () => {
       <div className="bg-[#1e293b] w-full max-w-2xl rounded-3xl shadow-2xl p-8 border border-white/10">
         <div className="flex flex-col items-center mb-8">
           <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-teal-500 to-cyan-500 flex items-center justify-center text-3xl font-bold text-white shadow-lg">
-            {profileDetails.userName?.[0] || "U"}
+            <img src={profileDetails.profileImg} alt="" className="rounded-full" />
           </div>
           <h1 className="mt-4 text-2xl font-bold">{profileDetails.userName}</h1>
           <p className="text-gray-400">Profile Overview</p>
