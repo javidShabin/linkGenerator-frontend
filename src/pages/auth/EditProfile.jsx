@@ -7,7 +7,6 @@ import { useState } from "react";
 
 export default function EditProfile() {
   const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false); // <-- Loading state added
@@ -16,7 +15,6 @@ export default function EditProfile() {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
   } = useForm({
     defaultValues: {
       userName: user?.userName || "",
@@ -42,7 +40,7 @@ export default function EditProfile() {
       });
 
       toast.success("Profile updated successfully!");
-      // Optionally: dispatch updated user or redirect
+      navigate("/user/dashboard/profile")
     } catch (error) {
       toast.error("Profile update failed");
     } finally {

@@ -14,11 +14,12 @@ const BrandPage = () => {
         const response = await axiosInstance.get(
           `/link/get-latest-link/${userId}`
         );
+        console.log(response)
         setSlug(response.data.data.slug);
         setChatLink(response.data.data.whatsappLink);
         setUserName(response.data.data.user.userName);
         setUserEmail(response.data.data.user.email);
-        setProfilePic(response.data.data.user.profilePic);
+        setProfilePic(response.data.data.user.profileImg);
         console.log(response);
       } catch (error) {
         console.log(error);
