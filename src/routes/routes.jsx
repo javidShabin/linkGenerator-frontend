@@ -15,6 +15,7 @@ import ProfilePage from "../pages/auth/profile";
 import MyLinks from "../pages/auth/MyLinks";
 import Dashbord from "../pages/auth/Dashbord";
 import BrandPage from "../pages/pro/BrandPage";
+import EditProfile from "../pages/auth/EditProfile";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
                 path: "my-links",
                 element: <MyLinks />,
               },
+              {
+                path: "settings/edit-profile",
+                element: <EditProfile />
+              }
             ],
           },
         ],

@@ -16,7 +16,7 @@ const UserSidebar = () => {
       name: "Settings",
       path: "/user/dashboard/settings",
       subLinks: [
-        { name: "Account", path: "/user/dashboard/settings/account" },
+        { name: "Edite Profile", path: "/user/dashboard/settings/edit-profile" },
         { name: "Security", path: "/user/dashboard/settings/security" },
         { name: "Notifications", path: "/user/dashboard/settings/notifications" },
       ],
