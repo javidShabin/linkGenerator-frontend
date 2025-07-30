@@ -14,7 +14,6 @@ const BrandPage = () => {
         const response = await axiosInstance.get(
           `/link/get-latest-link/${userId}`
         );
-        console.log(response)
         setSlug(response.data.data.slug);
         setChatLink(response.data.data.whatsappLink);
         setUserName(response.data.data.user.userName);
