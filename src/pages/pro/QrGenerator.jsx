@@ -57,7 +57,7 @@ const QrGenerator = () => {
 
       setQrImage(response.data.qr.qrCodeImage);
     } catch (err) {
-      console.error("Edit QR Error:", err);
+      alert("Edit QR Error:", err);
       alert("Failed to update QR");
     } finally {
       setEditLoading(false);
