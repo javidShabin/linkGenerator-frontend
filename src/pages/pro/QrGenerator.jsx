@@ -49,7 +49,7 @@ const QrGenerator = () => {
       formData.append('backgroundColor', backgroundColor);
       if (logoFile) formData.append('logo', logoFile);
 
-      const response = await axiosInstance.patch(`/qr/edit-qr/${qrId}`, formData, {
+      const response = await axiosInstance.patch(`/qr/edit-qr/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
