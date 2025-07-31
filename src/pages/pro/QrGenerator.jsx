@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { axiosInstance } from '../../config/axiosInstance';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { axiosInstance } from "../../config/axiosInstance";
 
 const QrGenerator = () => {
   const { slug } = useParams();
-  const [qrImage, setQrImage] = useState('');
-  const [whatsappLink, setWhatsappLink] = useState('');
-  const [qrId, setQrId] = useState('');
+  const [qrImage, setQrImage] = useState("");
+  const [whatsappLink, setWhatsappLink] = useState("");
+  const [qrId, setQrId] = useState("");
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [selectedFormat, setSelectedFormat] = useState('png');
+  const [error, setError] = useState("");
+  const [selectedFormat, setSelectedFormat] = useState("png");
 
-  const [foregroundColor, setForegroundColor] = useState('#000000');
-  const [backgroundColor, setBackgroundColor] = useState('#ffffff');
+  const [foregroundColor, setForegroundColor] = useState("#000000");
+  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
   const [logoFile, setLogoFile] = useState(null);
   const [editLoading, setEditLoading] = useState(false);
 
@@ -25,7 +25,7 @@ const QrGenerator = () => {
         setQrId(response.data.data._id);
       } catch (err) {
         console.error(err);
-        setError('❌ Failed to generate QR Code. Please try again.');
+        setError("❌ Failed to generate QR Code. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -35,7 +35,7 @@ const QrGenerator = () => {
 
   const handleDownload = () => {
     const downloadUrl = `${axiosInstance.defaults.baseURL}/qr/download/${qrId}?format=${selectedFormat}`;
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = downloadUrl;
     link.download = `whatsapp-qr.${selectedFormat}`;
     link.click();
@@ -45,15 +45,20 @@ const QrGenerator = () => {
     try {
       setEditLoading(true);
       const formData = new FormData();
-      formData.append('foregroundColor', foregroundColor);
-      formData.append('backgroundColor', backgroundColor);
-      if (logoFile) formData.append('logo', logoFile);
+      formData.append("foregroundColor", foregroundColor);
+      formData.append("backgroundColor", backgroundColor);
+      if (logoFile) formData.append("logo", logoFile);
 
-      const response = await axiosInstance.patch(`/qr/edit-qr/${qrId}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axiosInstance.patch(
+        `/qr/edit-qr/${qrId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Accept: "application/json", // Optional but good to include
+          },
+        }
+      );
 
       setQrImage(response.data.qr.qrCodeImage);
     } catch (err) {
@@ -83,7 +88,9 @@ const QrGenerator = () => {
             <div className="flex items-center justify-center gap-4 mb-6">
               {/* Foreground color selector (left side) */}
               <div>
-                <label className="block mb-1 text-xs text-center">Foreground</label>
+                <label className="block mb-1 text-xs text-center">
+                  Foreground
+                </label>
                 <input
                   type="color"
                   value={foregroundColor}
@@ -100,7 +107,9 @@ const QrGenerator = () => {
 
               {/* Background color selector (right side) */}
               <div>
-                <label className="block mb-1 text-xs text-center">Background</label>
+                <label className="block mb-1 text-xs text-center">
+                  Background
+                </label>
                 <input
                   type="color"
                   value={backgroundColor}
@@ -145,10 +154,18 @@ const QrGenerator = () => {
                 onChange={(e) => setSelectedFormat(e.target.value)}
                 className="w-full sm:w-1/2 bg-white/10 text-white border border-white/20 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#14b8a6]"
               >
-                <option className="text-black" value="png">PNG</option>
-                <option className="text-black" value="jpg">JPG</option>
-                <option className="text-black" value="jpeg">JPEG</option>
-                <option className="text-black" value="svg">SVG</option>
+                <option className="text-black" value="png">
+                  PNG
+                </option>
+                <option className="text-black" value="jpg">
+                  JPG
+                </option>
+                <option className="text-black" value="jpeg">
+                  JPEG
+                </option>
+                <option className="text-black" value="svg">
+                  SVG
+                </option>
               </select>
 
               <button
@@ -160,7 +177,8 @@ const QrGenerator = () => {
             </div>
 
             <p className="text-center text-[#94a3b8] text-sm">
-              Powered by <span className="text-[#14b8a6] font-semibold">YourBrand</span>
+              Powered by{" "}
+              <span className="text-[#14b8a6] font-semibold">YourBrand</span>
             </p>
           </>
         )}
