@@ -49,12 +49,16 @@ const QrGenerator = () => {
       formData.append('backgroundColor', backgroundColor);
       if (logoFile) formData.append('logo', logoFile);
 
-      const response = await axiosInstance.patch(`/qr/edit-qr/${qrId}`, formData);
+      const response = await axiosInstance.patch(`/qr/edit-qr/${qrId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
       setQrImage(response.data.qr.qrCodeImage);
     } catch (err) {
       console.error("Edit QR Error:", err);
-      alert("Failed to update QR", err);
+      alert("Failed to update QR");
     } finally {
       setEditLoading(false);
     }
