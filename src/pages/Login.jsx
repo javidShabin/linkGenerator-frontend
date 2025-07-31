@@ -29,7 +29,7 @@ export default function LoginForm() {
   };
 
   const handleGoogleLogin = () => {
-    console.log("Google Login");
+    window.location.href = "https://link-generator-frontend-rust.vercel.app/v1/api/auth/google";
   };
 
   return (
