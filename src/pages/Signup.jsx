@@ -34,7 +34,7 @@ export default function SignupForm() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "https://link-generator-frontend-rust.vercel.app/v1/api/auth/google";
+    window.location.href = "https://linkgenerator-t8x6.onrender.com/v1/api/auth/google";
   };
 
   return (
