@@ -5,10 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { clearUser, saveUser } from "../redux/feature/userSlice";
+import VerifyOtp from "../components/VerifyOtp";
+import { useState } from "react";
 
 export default function SignupForm() {
+  const [showOtpForm, setShowOtpForm] = useState(false);
+  const [userData, setUserData] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
   const {
     register,
     handleSubmit,
@@ -19,14 +23,14 @@ export default function SignupForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axiosInstance.post("/user/signup", {
+      const response = await axiosInstance.post("/user/generate-otp", {
         ...data,
         role: "user",
       });
 
       toast.success(response.data.message);
-      dispatch(saveUser(response.data.user));
-      navigate("/");
+      setUserData(data);
+     setShowOtpForm(true);
     } catch (error) {
       toast.error("Signup failed");
       dispatch(clearUser());
@@ -38,6 +42,7 @@ export default function SignupForm() {
   };
 
   return (
+    <>
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] px-4">
       <div className="w-full max-w-md bg-white/5 border border-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-2xl text-white">
         <h2 className="text-2xl font-bold text-center mb-6 text-[#14b8a6]">
@@ -186,5 +191,14 @@ export default function SignupForm() {
         </p>
       </div>
     </div>
+    {/* OTP Verification Section */}
+      {showOtpForm && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-70 z-10">
+          <div className="bg-white/5 border border-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-2xl text-white max-w-sm w-full">
+            <VerifyOtp email={userData.email} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

@@ -19,6 +19,7 @@ export default function LoginForm() {
   const onSubmit = async (data) => {
     try {
       const response = await axiosInstance.post("/user/login", data);
+      console.log(response)
       toast.success("Login success");
       dispatch(saveUser(response.data.user));
       navigate("/");
