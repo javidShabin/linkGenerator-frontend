@@ -16,6 +16,7 @@ import MyLinks from "../pages/auth/MyLinks";
 import Dashbord from "../pages/auth/Dashbord";
 import BrandPage from "../pages/pro/BrandPage";
 import EditProfile from "../pages/auth/EditProfile";
+import BlockedPage from "../pages/BlockedPage";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
       {
         path: "/:userId",
         element: <BrandPage />,
+      },
+      {
+        path: "account-blocked",
+        element : <BlockedPage />
       },
 
       // ***************************************************************************
