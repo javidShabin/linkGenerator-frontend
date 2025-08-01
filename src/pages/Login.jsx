@@ -5,10 +5,12 @@ import toast from "react-hot-toast";
 import { axiosInstance } from "../config/axiosInstance";
 import { useDispatch } from "react-redux";
 import { clearUser, saveUser } from "../redux/feature/userSlice";
+import { useState } from "react";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -17,20 +19,23 @@ export default function LoginForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
+    setLoading(true);
     try {
       const response = await axiosInstance.post("/user/login", data);
-      console.log(response)
       toast.success("Login success");
       dispatch(saveUser(response.data.user));
       navigate("/");
     } catch (error) {
       dispatch(clearUser());
       toast.error("Login failed");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "https://linkgenerator-t8x6.onrender.com/v1/api/auth/google";
+    window.location.href =
+      "https://linkgenerator-t8x6.onrender.com/v1/api/auth/google";
   };
 
   return (
@@ -89,12 +94,38 @@ export default function LoginForm() {
             )}
           </div>
 
-          {/* Submit Button */}
+          {/* Submit Button with loading */}
           <button
             type="submit"
-            className="w-full bg-[#14b8a6] hover:bg-[#0d9488] text-white font-semibold py-2 rounded-lg transition duration-200 shadow-lg"
+            disabled={loading}
+            className={`w-full flex justify-center items-center gap-2 bg-[#14b8a6] hover:bg-[#0d9488] text-white font-semibold py-2 rounded-lg transition duration-200 shadow-lg ${
+              loading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
           >
-            Log In
+            {loading ? (
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+            ) : (
+              "Log In"
+            )}
           </button>
         </form>
 
@@ -108,6 +139,15 @@ export default function LoginForm() {
             <img src={googleLogo} alt="Google" className="h-6 w-6 mr-2" />
             <span className="text-[#e5e7eb] text-sm">Continue with Google</span>
           </button>
+        </div>
+
+        <div className="mt-2 text-center">
+          <Link
+            to="/forgot-password"
+            className="text-sm text-[#14b8a6] hover:underline"
+          >
+            Forgot password?
+          </Link>
         </div>
 
         {/* Signup Link */}

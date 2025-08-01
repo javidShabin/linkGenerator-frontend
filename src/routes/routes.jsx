@@ -17,6 +17,7 @@ import Dashbord from "../pages/auth/Dashbord";
 import BrandPage from "../pages/pro/BrandPage";
 import EditProfile from "../pages/auth/EditProfile";
 import BlockedPage from "../pages/BlockedPage";
+import ForgotPassword from "../pages/FogotPassword";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "account-blocked",
         element : <BlockedPage />
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />
       },
 
       // ***************************************************************************
