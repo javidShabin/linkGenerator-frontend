@@ -35,9 +35,7 @@ export default function EditProfile() {
     }
 
     try {
-      const response = await axiosInstance.put("/user/update-profile", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await axiosInstance.put("/user/update-profile", formData);
 
       toast.success("Profile updated successfully!");
       navigate("/user/dashboard/profile")
