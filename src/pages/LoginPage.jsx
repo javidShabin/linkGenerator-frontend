@@ -54,7 +54,7 @@ export default function LoginForm() {
 
   const handleGoogleLogin = () => {
     window.location.href =
-      "https://linkgenerator-t8x6.onrender.com/v1/api/auth/google";
+      "https://linkgenerator-backend.onrender.com/api/v1/api/auth/google";
   };
 
   return (
