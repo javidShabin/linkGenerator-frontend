@@ -38,7 +38,7 @@ export default function LoginForm() {
       console.log(response.data);
       console.log(response.data.user);
       toast.success("Login success");
-      dispatch(saveUser(response.data.user));
+      dispatch(saveUser());
       navigate("/");
     } catch (error) {
       if (error.response.data.redirect) {

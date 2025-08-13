@@ -27,7 +27,7 @@ const Header = () => {
 
   const checkUser = async () => {
     try {
-      const response = await axiosInstance.get("/user/check-user-auth");
+      await axiosInstance.get("/user/check-user-auth");
       dispatch(saveUser());
     } catch (error) {
       dispatch(clearUser());
