@@ -24,9 +24,25 @@ export default function Sidebar({ onNavigate }) {
 
   const items = [
     { id: "Dashboard", label: "Dashboard", icon: Home, path: "/user/dashbord" },
-    { id: "Profile", label: "Profile", icon: User, path: "/user/dashbord/profile" },
-    { id: "My-Links", label: "My-Links", icon: LinkIcon, path: "/user/dashbord/prev-liks" },
-    { id: "Settings", label: "Settings", icon: Settings, path: "/user/settings", dropdown: true },
+    {
+      id: "Profile",
+      label: "Profile",
+      icon: User,
+      path: "/user/dashbord/profile",
+    },
+    {
+      id: "My-Links",
+      label: "My-Links",
+      icon: LinkIcon,
+      path: "/user/dashbord/prev-liks",
+    },
+    {
+      id: "Settings",
+      label: "Settings",
+      icon: Settings,
+      path: "/user/settings",
+      dropdown: true,
+    },
   ];
 
   function handleNav(item) {
@@ -95,7 +111,9 @@ export default function Sidebar({ onNavigate }) {
                     </div>
                   </div>
                   {it.dropdown && (
-                    <div className="text-xs text-white/40">{settingsOpen ? "▲" : "▼"}</div>
+                    <div className="text-xs text-white/40">
+                      {settingsOpen ? "▲" : "▼"}
+                    </div>
                   )}
                 </Link>
 
@@ -125,13 +143,13 @@ export default function Sidebar({ onNavigate }) {
       {/* Profile & Logout */}
       <div className="flex items-center gap-3">
         <img
-          src={userDetails.profileImg} 
+          src={userDetails?.profileImg || "/default-avatar.png"}
           alt="avatar"
           className="w-10 h-10 rounded-full ring-1 ring-white/10"
         />
         <div>
-          <div className="text-sm font-semibold">{userDetails.userName}</div>
-          <div className="text-xs text-white/50">{userDetails.role}</div>
+          <div className="text-sm font-semibold">{userDetails?.userName}</div>
+          <div className="text-xs text-white/50">{userDetails?.role}</div>
         </div>
         <button
           onClick={handleLogout}
