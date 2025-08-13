@@ -36,7 +36,7 @@ export default function LoginForm() {
     try {
       const response = await axiosInstance.post("/auth/login-user", data);
       toast.success("Login success");
-      dispatch(saveUser());
+      dispatch(saveUser(response.data.data));
       navigate("/");
     } catch (error) {
       if (error.response.data.redirect) {

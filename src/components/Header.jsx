@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 
 const Header = () => {
   const { isUserExist } = useSelector((state) => state.user);
+
+  console.log(isUserExist)
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
