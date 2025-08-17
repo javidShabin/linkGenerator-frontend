@@ -20,7 +20,7 @@ const VerifyOtp = ({ email }) => {
       const response = await axiosInstance.post("/auth/otp-verifying", data);
       toast.success(response.data.message);
       dispatch(saveUser(response.data.data));
-      navigate("/");
+      navigate("/user/dashbord");
     } catch (error) {
       toast.error("OTP verification failed");
       dispatch(clearUser());
