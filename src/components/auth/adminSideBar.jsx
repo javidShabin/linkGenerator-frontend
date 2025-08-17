@@ -39,7 +39,7 @@ export default function AdminSideBar({ onNavigate }) {
       id: "Profile",
       label: "Profile",
       icon: User,
-      path: "/admin/profile",
+      path: "/user/admin/profile",
     },
     {
       id: "All-users",
