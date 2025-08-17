@@ -94,7 +94,7 @@ export default function AdminsDashboard() {
             <p className="text-gray-400 text-sm leading-relaxed text-center sm:text-left">
               View all users currently subscribed to one or more plans
             </p>
-            <Link to={"/admin/payment-details"} className="w-full sm:w-auto">
+            <Link to={"/user/admin/payment-details"} className="w-full sm:w-auto">
               <button className="w-full sm:w-auto px-5 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-white font-semibold shadow-lg transition-transform duration-300">
                 View Users
               </button>
