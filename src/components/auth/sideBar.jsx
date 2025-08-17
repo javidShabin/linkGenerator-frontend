@@ -7,6 +7,7 @@ import {
   LogOut,
   UserCog,
   Shield,
+  Package,
 } from "lucide-react";
 import { axiosInstance } from "../../configs/axiosInstance";
 import { useDispatch } from "react-redux";
@@ -35,6 +36,12 @@ export default function Sidebar({ onNavigate }) {
       label: "My-Links",
       icon: LinkIcon,
       path: "/user/dashbord/prev-liks",
+    },
+    {
+      id: "Plans",
+      label: "Plans",
+      icon: Package,
+      path: "/user/dashbord/check-out",
     },
     {
       id: "Settings",
