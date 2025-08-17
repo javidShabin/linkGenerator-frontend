@@ -69,10 +69,7 @@ export const router = createBrowserRouter([
         element: <AuthUser />,
 
         children: [
-          {
-            path: "link-generate",
-            element: <LinkGenerating />,
-          },
+          
           {
             path: "check-out",
             element: <ProPlanPage />,
@@ -109,6 +106,10 @@ export const router = createBrowserRouter([
               {
                 path: "edit-profile",
                 element: <ProfileEdite />,
+              },
+              {
+                path: "link-generate",
+                element: <LinkGenerating />,
               },
             ],
           },

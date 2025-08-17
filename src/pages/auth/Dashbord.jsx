@@ -71,7 +71,7 @@ export default function Dashboard() {
 
         {/* Create Link */}
         <div
-          onClick={() => navigate("/user/link-generate")}
+          onClick={() => navigate("/user/dashbord/link-generate")}
           className="p-6 w-full bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between cursor-pointer row-span-2"
         >
           <div className="flex items-center gap-4 mb-6">
@@ -92,7 +92,7 @@ export default function Dashboard() {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              navigate("/user/link-generate");
+              navigate("/user/dashbord/link-generate");
             }}
             className="self-start px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-white font-semibold transition-shadow shadow-md"
           >
