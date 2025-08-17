@@ -74,7 +74,7 @@ export default function Sidebar({ onNavigate }) {
             <span className="font-extrabold tracking-tight">TS</span>
           </div>
           <div>
-            <Link to={"/user/admin"}>
+            <Link to={"/user/dashbord"}>
               <h1 className="text-lg font-bold leading-none">Whats Link</h1>
             </Link>
             <p className="text-xs text-white/60">Premium dashboard</p>
