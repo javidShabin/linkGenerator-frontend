@@ -133,7 +133,7 @@ const Home = () => {
             Unlock advanced customization, branded experiences, and insightful
             analytics — all with one premium plan. No subscriptions. No limits.
           </p>
-          <Link to="/user/check-out">
+          <Link to="/user/dashbord/check-out">
             <button className="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-8 py-3 text-lg rounded-xl shadow-lg transition">
               💎 View Pricing
             </button>

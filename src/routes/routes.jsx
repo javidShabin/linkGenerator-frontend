@@ -69,19 +69,6 @@ export const router = createBrowserRouter([
         element: <AuthUser />,
 
         children: [
-          
-          {
-            path: "check-out",
-            element: <ProPlanPage />,
-          },
-          {
-            path: "payment-success",
-            element: <PaymentSuccess />,
-          },
-          {
-            path: "payment-cancel",
-            element: <PaymentCancel />,
-          },
 
           // **********************************************************************
           // ******************** User dashborad routes***************************
@@ -111,13 +98,26 @@ export const router = createBrowserRouter([
                 path: "link-generate",
                 element: <LinkGenerating />,
               },
+              {
+                path: "payment-success",
+                element: <PaymentSuccess />,
+              },
+              {
+                path: "payment-cancel",
+                element: <PaymentCancel />,
+              },
+              {
+                path: "check-out",
+                element: <ProPlanPage />,
+              },
 
 
-
+              // ******************************************************************
+              // ********************** Premium user routes ********************************
               {
                 path: "pro-user",
                 element: <ProUser />,
-        
+
                 children: [
                   {
                     path: "qr-generator/:slug",
@@ -127,6 +127,9 @@ export const router = createBrowserRouter([
               },
             ],
           },
+
+          // ******************************************************************
+          // ********************** Admin routes ********************************
 
           {
             path: "admin",
@@ -170,10 +173,6 @@ export const router = createBrowserRouter([
         ],
       },
 
-      // ******************************************************************
-      // ********************** Premium user routes ********************************
-
-      
     ],
   },
 ]);
