@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../components/auth/sideBar";
 import { Outlet } from "react-router-dom";
+import { useBranding } from "../context/BrandingContext";
 
 const HamburgerIcon = ({ isOpen, toggle }) => (
+  
   <button
     aria-label="Toggle sidebar"
     onClick={toggle}
@@ -30,6 +32,8 @@ const HamburgerIcon = ({ isOpen, toggle }) => (
 const UserDashbord = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  const { buttonColor, logoText, logoUrl, logoColor, textColor } = useBranding();
 
   useEffect(() => {
     const handleResize = () => {
