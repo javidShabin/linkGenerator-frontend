@@ -10,6 +10,7 @@ import {
   LogOut,
   UserCog,
   Shield,
+  Paintbrush,
 } from "lucide-react";
 import { axiosInstance } from "../../configs/axiosInstance";
 import { useDispatch, useSelector } from "react-redux";
@@ -154,6 +155,12 @@ export default function AdminSideBar({ onNavigate }) {
                       className="flex items-center gap-2 text-sm text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10"
                     >
                       <UserCog size={14} /> Profile edit
+                    </Link>
+                    <Link
+                      to={"/user/admin/site-branding"}
+                      className="flex items-center gap-2 text-sm text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10"
+                    >
+                      <Paintbrush size={14} /> Site branding
                     </Link>
                   </div>
                 )}

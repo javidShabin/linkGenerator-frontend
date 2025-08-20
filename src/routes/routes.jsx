@@ -28,6 +28,7 @@ import ProUsers from "../pages/auth/admin/ProUsers";
 import PaymentDetails from "../pages/auth/admin/PaymentDetails";
 import AdminProfileEdit from "../pages/auth/admin/ProfileEdit";
 import AdminsDashboard from "../pages/auth/admin/AdminDashboard";
+import SiteBranding from "../pages/auth/admin/SiteBranding";
 
 export const router = createBrowserRouter([
   {
@@ -167,6 +168,10 @@ export const router = createBrowserRouter([
               {
                 path: "edit-profile",
                 element: <AdminProfileEdit />,
+              },
+              {
+                path: "site-branding",
+                element: <SiteBranding />,
               },
             ]
           },
