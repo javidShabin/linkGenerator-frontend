@@ -4,11 +4,13 @@ import { Pencil, Trash2, ToggleLeft, ToggleRight, Plus } from "lucide-react";
 import toast from "react-hot-toast";
 import EditPackageModal from "../../../components/auth/EditPackageModel"; // import your modal
 import { Link } from "react-router-dom";
+import { useBranding } from "../../../context/BrandingContext";
 
 const Plans = () => {
   const [currentPackage, setCurrentPackage] = useState([]);
   const [editingPackage, setEditingPackage] = useState(null); // store pkg to edit
   const [loading, setLoading] = useState(false); // ✅ loading state
+  const { buttonColor, textColor } = useBranding();
 
   const getAllPackages = async () => {
     setLoading(true); // start loading
@@ -70,7 +72,7 @@ const Plans = () => {
       {/* New Plan Button */}
       <div className="relative z-10 flex justify-center mb-12">
         <Link to={"/user/admin/add-plans"}>
-          <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/20 text-green-400 hover:bg-green-500/30 transition">
+          <button className="flex items-center gap-2 px-4 py-2 rounded-lg transition" style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}>
             <Plus className="w-5 h-5" /> New Plan
           </button>
         </Link>
@@ -127,7 +129,8 @@ const Plans = () => {
                 <div className="flex justify-between items-center pt-4 border-t border-white/10">
                   <button
                     onClick={() => handleToggle(pkg._id)}
-                    className="flex items-center gap-1 px-3 py-1 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
+                    className="flex items-center gap-1 px-3 py-1 rounded-lg transition"
+                    style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                   >
                     {pkg.isActive ? (
                       <ToggleRight className="w-5 h-5" />
@@ -139,14 +142,16 @@ const Plans = () => {
 
                   <button
                     onClick={() => handleEdit(pkg._id)}
-                    className="flex items-center gap-1 px-3 py-1 rounded-lg bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30 transition"
+                    className="flex items-center gap-1 px-3 py-1 rounded-lg transition"
+                    style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                   >
                     <Pencil className="w-5 h-5" /> Edit
                   </button>
 
                   <button
                     onClick={() => handleDelete(pkg._id)}
-                    className="flex items-center gap-1 px-3 py-1 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition"
+                    className="flex items-center gap-1 px-3 py-1 rounded-lg transition"
+                    style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                   >
                     <Trash2 className="w-5 h-5" /> Delete
                   </button>

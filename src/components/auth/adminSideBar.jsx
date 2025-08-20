@@ -17,12 +17,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { clearUser } from "../../redux/feature/userSlice";
+import { useBranding } from "../../context/BrandingContext";
 
 export default function AdminSideBar({ onNavigate }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [active, setActive] = useState("Dashboard");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const { buttonColor, textColor } = useBranding();
 
   const { isUserExist } = useSelector((state) => state.user);
 
@@ -184,6 +186,7 @@ export default function AdminSideBar({ onNavigate }) {
           <button
             onClick={handleLogout}
             className="ml-auto flex items-center gap-2 text-sm text-white/70 hover:text-white"
+            style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined, padding: 6, borderRadius: 8 }}
           >
             <LogOut size={16} />
             <span>Logout</span>
@@ -194,7 +197,7 @@ export default function AdminSideBar({ onNavigate }) {
           to={"/login-page"}
           className={`mt-8 py-2 text-center rounded-[10px] bg-purple-600 hover:bg-purple-700 transition duration-300 text-white text-lg font-semibold shadow-xl`}
         >
-          <button>🚀 Get Started</button>
+          <button style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}>🚀 Get Started</button>
         </Link>
       )}
     </aside>

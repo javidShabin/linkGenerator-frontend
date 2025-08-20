@@ -14,12 +14,14 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { clearUser } from "../../redux/feature/userSlice";
+import { useBranding } from "../../context/BrandingContext";
 
 export default function Sidebar({ onNavigate }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [active, setActive] = useState("Dashboard");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const { buttonColor, textColor } = useBranding();
 
   let userDetails = JSON.parse(localStorage.getItem("user"));
 
@@ -165,6 +167,7 @@ export default function Sidebar({ onNavigate }) {
         <button
           onClick={handleLogout}
           className="ml-auto flex items-center gap-2 text-sm text-white/70 hover:text-white"
+          style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined, padding: 6, borderRadius: 8 }}
         >
           <LogOut size={16} />
           <span>Logout</span>

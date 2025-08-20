@@ -3,9 +3,12 @@ import "./index.css";
 import App from "./App.jsx";
 import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
+import { BrandingProvider } from "./context/BrandingContext";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <App />
+    <BrandingProvider>
+      <App />
+    </BrandingProvider>
   </Provider>
 );

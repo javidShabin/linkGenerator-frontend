@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { axiosInstance } from "../../configs/axiosInstance";
 import { Copy, Link as LinkIcon, Check, Trash } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useBranding } from "../../context/BrandingContext";
 
 export default function LinkGenerating() {
   const [phone, setTitle] = useState("");
@@ -16,6 +17,7 @@ export default function LinkGenerating() {
   const [isPopup, setIsPopup] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [showBtn, setShowBtn] = useState("hidden");
+  const { buttonColor, textColor } = useBranding();
 
   useEffect(() => {
     setIsLoaded(true);
@@ -107,6 +109,7 @@ export default function LinkGenerating() {
               <button
                 className="px-4 py-2 rounded-2xl border border-gray-700 text-sm"
                 onClick={handleClear}
+                style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
               >
                 Clear
               </button>
@@ -151,7 +154,8 @@ export default function LinkGenerating() {
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <Link to={`/pro-user/qr-generator/${slug}`}>
                   <button
-                    className={`flex-1 ${showBtn} items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-green-500 hover:bg-green-600 font-semibold shadow-lg glow-btn`}
+                    className={`flex-1 ${showBtn} items-center justify-center gap-2 px-5 py-3 rounded-2xl font-semibold shadow-lg glow-btn`}
+                    style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                   >
                     <LinkIcon size={18} /> Generate QR code
                   </button>
@@ -159,9 +163,10 @@ export default function LinkGenerating() {
                 <button
                   onClick={handleGenerate}
                   disabled={loading}
-                  className={`flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-purple-500 hover:bg-purple-600 font-semibold shadow-lg glow-btn ${
+                  className={`flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-2xl font-semibold shadow-lg glow-btn ${
                     isPopup ? "popup-animate" : ""
                   }`}
+                  style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                 >
                   <LinkIcon size={18} />{" "}
                   {loading ? "Generating..." : "Generate Link"}
@@ -190,6 +195,7 @@ export default function LinkGenerating() {
                         <button
                           onClick={() => handleCopy(generated)}
                           className="flex items-center gap-2 px-3 py-2 rounded-xl border border-white/8 text-sm glow-btn"
+                          style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                         >
                           <Copy size={14} /> Copy
                         </button>
@@ -198,6 +204,7 @@ export default function LinkGenerating() {
                           target="_blank"
                           rel="noreferrer"
                           className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 text-sm border border-white/8 glow-btn"
+                          style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                         >
                           <LinkIcon size={14} /> Open
                         </a>
@@ -216,6 +223,7 @@ export default function LinkGenerating() {
                         <button
                           onClick={() => handleCopy(brandUrl)}
                           className="flex items-center gap-2 px-3 py-2 rounded-xl border border-white/8 text-sm glow-btn"
+                          style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                         >
                           <Copy size={14} /> Copy
                         </button>
@@ -224,6 +232,7 @@ export default function LinkGenerating() {
                           target="_blank"
                           rel="noreferrer"
                           className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 text-sm border border-white/8 glow-btn"
+                          style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                         >
                           <LinkIcon size={14} /> Open
                         </a>
@@ -242,6 +251,7 @@ export default function LinkGenerating() {
                         <button
                           onClick={() => handleCopy(shortLink)}
                           className="flex items-center gap-2 px-3 py-2 rounded-xl border border-white/8 text-sm glow-btn"
+                          style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                         >
                           <Copy size={14} /> Copy
                         </button>

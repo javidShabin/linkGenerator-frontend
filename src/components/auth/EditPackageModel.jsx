@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { X, Plus, Trash2 } from "lucide-react";
 import { axiosInstance } from "../../configs/axiosInstance";
 import toast from "react-hot-toast";
+import { useBranding } from "../../context/BrandingContext";
 
 const EditPackageModal = ({ pkg, onClose, onUpdated }) => {
   const [form, setForm] = useState({
@@ -13,6 +14,7 @@ const EditPackageModal = ({ pkg, onClose, onUpdated }) => {
   });
 
   const durations = ["lifetime", "per year", "per month"];
+  const { buttonColor, textColor } = useBranding();
 
   useEffect(() => {
     if (pkg) {
@@ -72,6 +74,7 @@ const EditPackageModal = ({ pkg, onClose, onUpdated }) => {
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+          style={{ color: textColor || undefined }}
         >
           <X className="w-6 h-6" />
         </button>
@@ -142,7 +145,8 @@ const EditPackageModal = ({ pkg, onClose, onUpdated }) => {
                   <button
                     type="button"
                     onClick={() => handleRemoveFeature(idx)}
-                    className="p-3 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-lg transition"
+                    className="p-3 rounded-lg transition"
+                    style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>
@@ -152,7 +156,8 @@ const EditPackageModal = ({ pkg, onClose, onUpdated }) => {
             <button
               type="button"
               onClick={handleAddFeature}
-              className="flex items-center gap-2 px-4 py-2 bg-green-500/20 hover:bg-green-500/30 text-green-400 rounded-lg transition mt-2"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg transition mt-2"
+              style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
             >
               <Plus className="w-5 h-5" /> Add Feature
             </button>
@@ -161,7 +166,8 @@ const EditPackageModal = ({ pkg, onClose, onUpdated }) => {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full py-3 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 font-semibold text-lg shadow-lg transition"
+            className="w-full py-3 rounded-lg font-semibold text-lg shadow-lg transition"
+            style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
           >
             Save Changes
           </button>

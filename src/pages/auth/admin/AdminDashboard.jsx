@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CreditCard } from "lucide-react";
 import { axiosInstance } from "../../../configs/axiosInstance";
+import { useBranding } from "../../../context/BrandingContext";
 
 export default function AdminsDashboard() {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ export default function AdminsDashboard() {
   const [userDetails, setUserDetails] = useState();
   const [usersWithPlans, setUsersWithPlans] = useState(0);
   const [allUsers, setAllUsers] = useState("");
+  const { buttonColor, textColor } = useBranding();
 
   // Payment details
   useEffect(() => {
@@ -95,7 +97,7 @@ export default function AdminsDashboard() {
               View all users currently subscribed to one or more plans
             </p>
             <Link to={"/user/admin/payment-details"} className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto px-5 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-white font-semibold shadow-lg transition-transform duration-300">
+              <button className="w-full sm:w-auto px-5 py-3 rounded-lg text-white font-semibold shadow-lg transition-transform duration-300" style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}>
                 View Users
               </button>
             </Link>
@@ -127,7 +129,8 @@ export default function AdminsDashboard() {
               e.stopPropagation();
               navigate("/user/admin/payment-plans");
             }}
-            className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-white font-semibold transition-shadow shadow-md"
+            className="px-6 py-3 rounded-lg text-white font-semibold transition-shadow shadow-md"
+            style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
           >
             View Plans
           </button>
@@ -167,7 +170,8 @@ export default function AdminsDashboard() {
             View all users{" "}
             <Link
               to={"/user/admin/all-users"}
-              className="font-semibold text-white bg-purple-500 rounded-md px-4 py-2"
+              className="font-semibold text-white rounded-md px-4 py-2"
+              style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
             >
               Click here
             </Link>

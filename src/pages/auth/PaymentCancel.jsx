@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { XCircle } from "lucide-react";
+import { useBranding } from "../../context/BrandingContext";
 
 export default function PaymentCancel() {
   const navigate = useNavigate();
+  const { buttonColor } = useBranding();
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-[#05030e] via-[#12061f] to-[#05030e] overflow-hidden">
@@ -25,13 +27,15 @@ export default function PaymentCancel() {
         <div className="mt-6 flex justify-center gap-4">
           <button
             onClick={() => navigate("/user/check-out")}
-            className="px-6 py-3 rounded-lg bg-purple-700 hover:bg-purple-800 text-white font-semibold transition-all duration-300 shadow-lg"
+            className="px-6 py-3 rounded-lg text-white font-semibold transition-all duration-300 shadow-lg"
+            style={{ backgroundColor: buttonColor || "#6b21a8" }}
           >
             Try Again
           </button>
           <button
             onClick={() => navigate("/")}
-            className="px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-800 text-white font-semibold transition-all duration-300 shadow-lg"
+            className="px-6 py-3 rounded-lg text-white font-semibold transition-all duration-300 shadow-lg"
+            style={{ backgroundColor: buttonColor || "#374151" }}
           >
             Go to Home
           </button>

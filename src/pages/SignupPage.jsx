@@ -8,12 +8,14 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import VerifyOtp from "../components/VerifyOtp";
 import { clearUser } from "../redux/feature/userSlice";
+import { useBranding } from "../context/BrandingContext";
 
 export default function SignupForm() {
   const [showOtpForm, setShowOtpForm] = useState(false);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const { buttonColor, textColor } = useBranding();
 
   const {
     register,
@@ -58,7 +60,9 @@ export default function SignupForm() {
       {/* Form Wrapper */}
       <div className="min-h-screen flex items-center justify-center px-4 py-1 overflow-auto">
         <div className="w-full max-w-md border border-white/10 backdrop-blur-3xl p-6 rounded-2xl shadow-2xl text-white">
-          <h2 className="text-2xl font-bold text-center mb-6 text-purple-500">
+          <h2 className="text-2xl font-bold text-center mb-6 text-purple-500"
+            style={{ color: textColor || undefined }}
+          >
             Create an Account
           </h2>
 
@@ -181,6 +185,7 @@ export default function SignupForm() {
               className={`w-full flex justify-center items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg transition duration-200 shadow-lg ${
                 loading ? "opacity-70 cursor-not-allowed" : ""
               }`}
+              style={{ backgroundColor: buttonColor || undefined }}
             >
               {loading ? (
                 <svg
@@ -215,9 +220,10 @@ export default function SignupForm() {
             <button
               onClick={handleGoogleLogin}
               className="w-full border border-white/10 py-2 rounded-lg flex items-center justify-center bg-[#1a1a1f] hover:bg-[#2a2a33] transition duration-200"
+              style={{ backgroundColor: buttonColor || undefined }}
             >
               <img src={googleLogo} alt="Google" className="h-6 w-6 mr-2" />
-              <span className="text-[#e5e7eb] text-sm">
+              <span className="text-[#e5e7eb] text-sm" style={{ color: textColor || undefined }}>
                 Continue with Google
               </span>
             </button>

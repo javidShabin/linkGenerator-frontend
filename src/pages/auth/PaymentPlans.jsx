@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { axiosInstance } from "../../configs/axiosInstance";
 import toast from "react-hot-toast";
+import { useBranding } from "../../context/BrandingContext";
 
 
-const PlanCard = ({ title, price, duration, features, onClick }) => (
+const PlanCard = ({ title, price, duration, features, onClick }) => {
+  const { buttonColor } = useBranding();
+  return (
   <div className="flex flex-col justify-between p-8 rounded-3xl border border-white/10 shadow-xl backdrop-blur-lg transition-all duration-500 relative overflow-hidden group bg-white/5">
     {/* Glow Overlay */}
     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 blur-3xl bg-purple-500/10" />
@@ -32,11 +35,12 @@ const PlanCard = ({ title, price, duration, features, onClick }) => (
     <button
       onClick={onClick}
       className="w-full py-3 rounded-2xl font-semibold text-lg transition-all duration-300 transform group-hover:scale-105 text-white shadow-lg border border-gray-500 hover:bg-purple-500"
+      style={{ backgroundColor: buttonColor || undefined }}
     >
       Choose Plan
     </button>
   </div>
-);
+)};
 
 const ProPlanPage = () => {
   const [packages, setPackages] = useState([]);

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearUser } from "../../redux/feature/userSlice";
 import toast from "react-hot-toast";
+import { useBranding } from "../../context/BrandingContext";
 import {
   MdPerson,
   MdEmail,
@@ -15,6 +16,7 @@ import {
 } from "react-icons/md";
 
 const ProfilePage = () => {
+  const { buttonColor, textColor } = useBranding();
 
   
   const [profileDetails, setProfileDetails] = useState({});
@@ -89,8 +91,8 @@ const ProfilePage = () => {
 
           {/* Info */}
           <div className="flex-1">
-            <h2 className="text-4xl font-bold">{profileDetails.userName || "Loading..."}</h2>
-            <p className="text-indigo-300 font-medium mb-6">Profile Overview</p>
+            <h2 className="text-4xl font-bold" style={{ color: textColor || undefined }}>{profileDetails.userName || "Loading..."}</h2>
+            <p className="text-indigo-300 font-medium mb-6" style={{ color: textColor || undefined }}>Profile Overview</p>
 
             {/* Fields */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -118,7 +120,8 @@ const ProfilePage = () => {
         <div className="mt-10 flex flex-col sm:flex-row gap-5">
           <Link
             to="/"
-            className="flex-1 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold text-center shadow-md hover:shadow-lg hover:scale-105 transition"
+            className="flex-1 py-3 rounded-lg text-white font-semibold text-center shadow-md hover:shadow-lg hover:scale-105 transition"
+            style={{ backgroundColor: buttonColor || undefined }}
           >
             <MdHome className="inline mr-2 mb-1" />
             Back to Home
@@ -126,7 +129,8 @@ const ProfilePage = () => {
 
           <button
             onClick={handleLogout}
-            className="flex-1 py-3 rounded-lg bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold shadow-md hover:shadow-lg hover:scale-105 transition flex items-center justify-center gap-2"
+            className="flex-1 py-3 rounded-lg text-white font-semibold shadow-md hover:shadow-lg hover:scale-105 transition flex items-center justify-center gap-2"
+            style={{ backgroundColor: buttonColor || undefined }}
           >
             <MdLogout size={20} />
             Logout

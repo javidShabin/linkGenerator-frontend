@@ -4,12 +4,14 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { useBranding } from "../../context/BrandingContext";
 
 const ProfileEdite = () => {
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { buttonColor } = useBranding();
 
   const {
     register,
@@ -136,6 +138,7 @@ const ProfileEdite = () => {
                 ? "bg-purple-500 cursor-not-allowed"
                 : "bg-purple-500 hover:bg-purple-800"
             }`}
+            style={{ backgroundColor: buttonColor || undefined }}
           >
             {loading ? "Updating..." : "Update Profile"}
           </button>

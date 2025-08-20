@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 import { axiosInstance } from "../../configs/axiosInstance";
+import { useBranding } from "../../context/BrandingContext";
 
 export default function PaymentSuccess() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [paymentInfo, setPaymentInfo] = useState(null);
+  const { buttonColor } = useBranding();
 
   useEffect(() => {
     const fetchPaymentDetails = async () => {
@@ -67,7 +69,8 @@ export default function PaymentSuccess() {
 
         <button
           onClick={() => navigate("/user/dashbord")}
-          className="mt-6 px-6 py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white font-semibold transition-all duration-300 shadow-lg"
+          className="mt-6 px-6 py-3 rounded-lg text-white font-semibold transition-all duration-300 shadow-lg"
+          style={{ backgroundColor: buttonColor || "#22c55e" }}
         >
           Go to Home
         </button>

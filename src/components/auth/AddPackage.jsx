@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { axiosInstance } from "../../configs/axiosInstance";
 import toast from "react-hot-toast";
+import { useBranding } from "../../context/BrandingContext";
 
 const AddPackagePage = ({ onAdded }) => {
   const [form, setForm] = useState({
@@ -11,6 +12,7 @@ const AddPackagePage = ({ onAdded }) => {
     duration: "",
     features: [""],
   });
+  const { buttonColor, textColor } = useBranding();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -133,7 +135,8 @@ const AddPackagePage = ({ onAdded }) => {
                   <button
                     type="button"
                     onClick={() => handleRemoveFeature(idx)}
-                    className="p-3 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-lg transition"
+                    className="p-3 rounded-lg transition"
+                    style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>
@@ -143,7 +146,8 @@ const AddPackagePage = ({ onAdded }) => {
             <button
               type="button"
               onClick={handleAddFeature}
-              className="flex items-center gap-2 px-4 py-2 bg-green-500/20 hover:bg-green-500/30 text-green-400 rounded-lg transition mt-2"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg transition mt-2"
+              style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
             >
               <Plus className="w-5 h-5" /> Add Feature
             </button>
@@ -152,8 +156,8 @@ const AddPackagePage = ({ onAdded }) => {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full py-3 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 
-                       hover:opacity-90 font-semibold text-lg shadow-lg transition"
+            className="w-full py-3 rounded-lg font-semibold text-lg shadow-lg transition"
+            style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
           >
             Add Package
           </button>

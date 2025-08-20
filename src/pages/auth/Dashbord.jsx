@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Link as LinkIcon } from "lucide-react";
 import { axiosInstance } from "../../configs/axiosInstance";
+import { useBranding } from "../../context/BrandingContext";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const [countLink, setCountLink] = useState();
   const [userDetails, setUserDetails] = useState();
+  const { buttonColor, textColor } = useBranding();
+  console.log(buttonColor, "=====")
 
   useEffect(() => {
     const getUserDetails = async () => {
@@ -62,7 +65,7 @@ export default function Dashboard() {
               View all your generated links and stats
             </p>
             <Link to={"/user/dashbord/prev-liks"} className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto px-5 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-white font-semibold shadow-lg transition-transform duration-300">
+              <button className="w-full sm:w-auto px-5 py-3 rounded-lg text-white font-semibold shadow-lg transition-transform duration-300" style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}>
                 View Details
               </button>
             </Link>
@@ -94,7 +97,8 @@ export default function Dashboard() {
               e.stopPropagation();
               navigate("/user/dashbord/link-generate");
             }}
-            className="self-start px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-white font-semibold transition-shadow shadow-md"
+            className="self-start px-6 py-3 rounded-lg text-white font-semibold transition-shadow shadow-md"
+            style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
           >
             Generate Link
           </button>

@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { clearUser, saveUser } from "../redux/feature/userSlice";
+import { useBranding } from "../context/BrandingContext";
 
 const VerifyOtp = ({ email }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { buttonColor, textColor } = useBranding();
 
   const {
     register,
@@ -31,7 +33,7 @@ const VerifyOtp = ({ email }) => {
       onSubmit={handleSubmit(onSubmit)}
       className="w-full max-w-md mx-auto p-8 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-3xl bg-[#1a1a1f]"
     >
-      <h2 className="text-2xl font-semibold text-center text-purple-500 mb-6">
+      <h2 className="text-2xl font-semibold text-center text-purple-500 mb-6" style={{ color: textColor || undefined }}>
         🔐 Verify OTP
       </h2>
 
@@ -67,7 +69,8 @@ const VerifyOtp = ({ email }) => {
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg"
+        className="w-full text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg"
+        style={{ backgroundColor: buttonColor || undefined }}
       >
         ✅ Verify Account
       </button>

@@ -3,6 +3,7 @@ import { LinkIcon, Pencil, Trash2, X } from "lucide-react";
 import { axiosInstance } from "../../configs/axiosInstance";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useBranding } from "../../context/BrandingContext";
 
 const MyLinks = () => {
   const [links, setLinks] = useState([]);
@@ -12,6 +13,7 @@ const MyLinks = () => {
     message: "",
     phone: "",
   });
+  const { buttonColor, textColor } = useBranding();
 
   // New state for delete confirmation
   const [deleteConfirmSlug, setDeleteConfirmSlug] = useState(null);
@@ -117,6 +119,7 @@ const MyLinks = () => {
                   <button
                     onClick={() => handleEditClick(link)}
                     className="p-2 rounded-full hover:bg-cyan-500/20 transition"
+                    style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                     title="Edit Link"
                   >
                     <Pencil size={18} className="text-cyan-400" />
@@ -124,6 +127,7 @@ const MyLinks = () => {
                   <button
                     onClick={() => setDeleteConfirmSlug(link.slug)}
                     className="p-2 rounded-full hover:bg-red-500/20 transition"
+                    style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                     title="Delete Link"
                   >
                     <Trash2 size={18} className="text-red-400" />
@@ -158,7 +162,8 @@ const MyLinks = () => {
               </div>
               <Link to={`/user/dashbord/pro-user/qr-generator/${link.slug}`}>
                   <button
-                    className={`flex item-center justify-center gap-2 px-3 bg-green-400 py-1 rounded-2xl border border-gray-600 shadow-lg`}
+                    className={`flex item-center justify-center gap-2 px-3 py-1 rounded-2xl border border-gray-600 shadow-lg`}
+                    style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
                   >QR code</button>
                 </Link>
             </div>
@@ -176,6 +181,7 @@ const MyLinks = () => {
             <button
               onClick={() => setEditingLink(null)}
               className="absolute top-5 right-5 text-gray-400 hover:text-purple-500 transition-transform hover:scale-110"
+              style={{ color: textColor || undefined }}
               aria-label="Close Edit Modal"
             >
               <X size={28} />
@@ -258,10 +264,10 @@ const MyLinks = () => {
 
               <button
                 type="submit"
-                className="w-full py-4 bg-purple-700 rounded-xl text-white font-semibold text-lg shadow-lg
+                className="w-full py-4 rounded-xl text-white font-semibold text-lg shadow-lg
             hover:bg-purple-800 hover:shadow-purple-600/70 transition-all duration-300 transform
             hover:-translate-y-0.5 active:scale-95"
-                style={{ backgroundColor: "#6b21a8" }}
+                style={{ backgroundColor: buttonColor || "#6b21a8" }}
               >
                 Save Changes
               </button>
@@ -287,12 +293,14 @@ const MyLinks = () => {
               <button
                 onClick={() => setDeleteConfirmSlug(null)}
                 className="px-4 py-2 rounded-lg border border-gray-500 hover:border-gray-400 transition"
+                style={{ backgroundColor: buttonColor || undefined, color: textColor || undefined }}
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleDelete(deleteConfirmSlug)}
-                className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 transition text-white font-semibold"
+                className="px-4 py-2 rounded-lg transition text-white font-semibold"
+                style={{ backgroundColor: buttonColor || "#dc2626" }}
               >
                 Delete
               </button>

@@ -7,12 +7,14 @@ import { clearUser, saveUser } from "../redux/feature/userSlice";
 import googleLogo from "../assets/google.png";
 import { BackgroundLines } from "../components/ui/BackgroundLines";
 import { useDispatch } from "react-redux";
+import { useBranding } from "../context/BrandingContext";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [blockLink, setBlockLinkg] = useState();
   const [loading, setLoading] = useState(false);
+  const { buttonColor, textColor } = useBranding();
 
   useEffect(() => {
     if (blockLink) {
@@ -72,7 +74,7 @@ export default function LoginForm() {
       </div>
       <div className="min-h-screen flex items-center justify-center px-4 absolute top-0 left-0 right-0">
         <div className="w-full max-w-md border border-white/10 backdrop-blur-3xl p-6 rounded-2xl shadow-2xl text-white">
-          <h2 className="text-2xl font-bold text-center mb-6 text-purple-500">
+          <h2 className="text-2xl font-bold text-center mb-6 text-purple-500" style={{ color: textColor || undefined }}>
             Welcome Back
           </h2>
 
@@ -132,6 +134,7 @@ export default function LoginForm() {
               className={`w-full flex justify-center items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg transition duration-200 shadow-lg ${
                 loading ? "opacity-70 cursor-not-allowed" : ""
               }`}
+              style={{ backgroundColor: buttonColor || undefined }}
             >
               {loading ? (
                 <svg
@@ -166,9 +169,10 @@ export default function LoginForm() {
             <button
               onClick={handleGoogleLogin}
               className="w-full border border-white/10 py-2 rounded-lg flex items-center justify-center bg-[#1a1a1f] hover:bg-[#2a2a33] transition duration-200"
+              style={{ backgroundColor: buttonColor || undefined }}
             >
               <img src={googleLogo} alt="Google" className="h-6 w-6 mr-2" />
-              <span className="text-[#e5e7eb] text-sm">
+              <span className="text-[#e5e7eb] text-sm" style={{ color: textColor || undefined }}>
                 Continue with Google
               </span>
             </button>
